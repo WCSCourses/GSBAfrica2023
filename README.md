@@ -1,43 +1,81 @@
-# Base repository
-
-Thank you for working with Wellcome Connecting Science Course! 
-
-This is an example repository to modify for Wellcome Connecting Science courses. 
-
-Check the course_data and modules repositories for info on how to add data and your course modules info
+# Genome Sequencing Bioinformatics - Africa
 
 # Course Name
-Base for the Polygenic Risk Scores course Repository
+Base for the Genome Sequencing Bioinformaticss course Repository
 
 ## Course overview
+In collaboration with [H3ABioNet]{https://h3abionet.org/}, we are pleased to announce the Genome Sequencing Bioinformatics Africa course. This is a new iteration of the previous course – “[Next Generation Sequencing Bioinformatics – Africa 2022]{https://coursesandconferences.wellcomeconnectingscience.org/event/next-generation-sequencing-bioinformatics-africa-20220322/}” 
+
+High throughput sequencing is an essential tool in genetic and genomic analysis. It is increasingly important for experimental scientists to gain the bioinformatics skills required to analyse the large volumes of data produced by sequencers. This course will equip participants with the essential informatics skills required to begin analysing sequencing data and apply some of the most commonly used tools and resources for sequence data analysis. 
+
+The programme will cover prominent sequencing technologies, algorithmic theory and principles of bioinformatics, with a strong focus on practical computational sessions using sequence analysis techniques and tools applicable to any species or genome size. A variety of applications will be covered from post-sequencing analysis, quality control, alignment, assembly, and variant calling.
+
+This course will apply a blended learning format consisting of locally coordinated classrooms referred to as “distributed classrooms”. See the publications by [Gurwitz et al.]{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005715} and [Ras et al]{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008640} for more information. The local classrooms for this course may run virtually using Zoom.
+
+**Time commitment:**
+
+Contact sessions will run on Tuesdays and Thursdays lasting for 4 hours per session.
+
+**Target audience:**
+
+The course is aimed at postdoctoral scientists, senior PhD students, junior faculty members or clinicians/healthcare professionals based in Africa who are actively engaged in or soon to commence research involving  sequencing data analysis.
+
+**Please note:**
+
+The practical sessions will be taught exclusively through Unix/Linux. Therefore, participants are required to have some previous experience using the Linux operating system. This will be essential for participants to fully benefit from the course. There are numerous online introductory tutorials to the UNIX/Linux operating system and command line, including:
+http://www.ee.surrey.ac.uk/Teaching/Unix 
+http://swcarpentry.github.io/shell-novice/  
 
 
-[Course website]()
+
+[Course website](https://coursesandconferences.wellcomeconnectingscience.org/event/genome-sequencing-bioinformatics-africa-20230815/)
 
 ## Instructors
-- [Instrucotr](link),Affiliation
+- [Instructor](link),Affiliation
 
 ### Overview
 
 
+**The programme will cover the following core topics:**
+
+- Intro to Unix/Linux & running workflows
+- Introduction to Sequencing Technologies
+- Sequencing data pre-processing and QC
+- Alignment to reference sequences
+- Variant calling and annotation
+- Learning outcomes
+
+**On completion of the course, participants should expect to be able to:**
+
+- Use the unix command-line as a tool for data analysis
+- Describe the different sequencing data file formats available
+- Perform QC assessment of high throughput sequencing data
+- Explain the algorithmic concepts behind read alignment, variant calling and structural variant detection
+- Perform read alignment, variant calling and structural variation detection using standard tools
+
 ### Detailed timetable
-[View Timetable here]()
+[View Timetable here "in dev"]()
 
 
 
 ## Course manual
-**Module 1 - Mod 1**   
-[PDF Manual - Mod 1](Modules/)     
+**Module 1 - Intro to Unix/Linux**   
+<!--- [Online Manual - Intro to Unix/Linux](modules/)  --->   
 
+**Module 2 - Introduction to Sequencing Technologies**  
+<!--- [Online Manual - Introduction to Sequencing Technologies](modules/)  --->
 
-
-**Module 3 - **  
-[Online Manual - Introduction to NGS](Modules/)
+**Module 3 - Sequencing data formats and QC**  
+<!--- [Online Manual - Sequencing data formats and QC](modules/)  --->
   
-**Module 4 -*  
-[Online Manual - Mod4l QC](Modules/)
+**Module 4 - Alignment to Reference**  
+<!--- [Online Manual - Alignment to Reference](modules/)  --->
 
+**Module 5 - Variant Calling - Human**  
+<!--- [Online Manual - Variant Calling - Human](modules/)  --->
 
+**Module 6 - Variant Calling - Pathogen**  
+<!--- [Online Manual - Variant Calling - Pathogen](modules/) --->
 
 
 **Appendix**      
