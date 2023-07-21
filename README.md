@@ -1,16 +1,14 @@
-# Genome Sequencing Bioinformatics - Africa
-
-# Course Name
-Base for the Genome Sequencing Bioinformaticss course Repository
+# Genome Sequencing Bioinformatics - Africa GSBAfrica
+Base for the Genome Sequencing Bioinformaticss course repository and manual
 
 ## Course overview
-In collaboration with [H3ABioNet]{https://h3abionet.org/}, we are pleased to announce the Genome Sequencing Bioinformatics Africa course. This is a new iteration of the previous course – “[Next Generation Sequencing Bioinformatics – Africa 2022]{https://coursesandconferences.wellcomeconnectingscience.org/event/next-generation-sequencing-bioinformatics-africa-20220322/}” 
+In collaboration with [H3ABioNet](https://h3abionet.org/), we are pleased to announce the Genome Sequencing Bioinformatics Africa course. This is a new iteration of the previous course – “[Next Generation Sequencing Bioinformatics – Africa 2022](https://coursesandconferences.wellcomeconnectingscience.org/event/next-generation-sequencing-bioinformatics-africa-20220322/)” 
 
 High throughput sequencing is an essential tool in genetic and genomic analysis. It is increasingly important for experimental scientists to gain the bioinformatics skills required to analyse the large volumes of data produced by sequencers. This course will equip participants with the essential informatics skills required to begin analysing sequencing data and apply some of the most commonly used tools and resources for sequence data analysis. 
 
 The programme will cover prominent sequencing technologies, algorithmic theory and principles of bioinformatics, with a strong focus on practical computational sessions using sequence analysis techniques and tools applicable to any species or genome size. A variety of applications will be covered from post-sequencing analysis, quality control, alignment, assembly, and variant calling.
 
-This course will apply a blended learning format consisting of locally coordinated classrooms referred to as “distributed classrooms”. See the publications by [Gurwitz et al.]{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005715} and [Ras et al]{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008640} for more information. The local classrooms for this course may run virtually using Zoom.
+This course will apply a blended learning format consisting of locally coordinated classrooms referred to as “distributed classrooms”. See the publications by [Gurwitz et al.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005715) and [Ras et al](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008640) for more information. The local classrooms for this course may run virtually using Zoom.
 
 **Time commitment:**
 
@@ -23,8 +21,8 @@ The course is aimed at postdoctoral scientists, senior PhD students, junior facu
 **Please note:**
 
 The practical sessions will be taught exclusively through Unix/Linux. Therefore, participants are required to have some previous experience using the Linux operating system. This will be essential for participants to fully benefit from the course. There are numerous online introductory tutorials to the UNIX/Linux operating system and command line, including:
-http://www.ee.surrey.ac.uk/Teaching/Unix 
-http://swcarpentry.github.io/shell-novice/  
+- http://www.ee.surrey.ac.uk/Teaching/Unix 
+- http://swcarpentry.github.io/shell-novice/  
 
 
 
