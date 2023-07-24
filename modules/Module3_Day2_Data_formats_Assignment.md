@@ -27,7 +27,7 @@ whether you are planning to use something you have sequenced yourself or
 publicly available data. In the latter part of this tutorial we will
 describe how to perform a QC assessment for your NGS data.
 
-### Learning outcomes
+**Learning outcomes**
 
 On completion of the tutorial, you can expect to be able to:
 
@@ -36,7 +36,7 @@ On completion of the tutorial, you can expect to be able to:
 -   Perform a QC assessment of high throughput sequence data
 -   Perform conversions between the different data formats
 
-### Tutorial sections
+**Tutorial sections**
 
 This tutorial comprises the following sections:\
 1. Data formats
@@ -46,14 +46,14 @@ If you have time you can also complete:
 
 1.  File conversion
 
-### Authors
+**Authors**
 
 This tutorial was written by [Jacqui
 Keane](https://github.com/jacquikeane) and [Sara Sjunnebo](https://github.com/ssjunnebo) based on material from [Petr Danecek](https://github.com/pd3) and [Thomas Keane](https://github.com/tk2).
 
 It has been reproduced for Wellcome Connecting Science - GSB_Africa by Jane Mwangi and Shaun Aron. 
 
-### Running the commands from this tutorial
+**Running the commands from this tutorial**
 
 You can follow this tutorial by typing all the commands you see into a
 terminal window. This is similar to the "Command Prompt" window on MS
@@ -69,7 +69,7 @@ cd ~/course-data/data_formats/
 
 Now you can follow the instructions in the tutorial from here.
 
-### Let's get started!
+**Let's get started!**
 
 This tutorial assumes that you have samtools, bcftools and Picard tools
 installed on your computer. These are already installed on the VM you
@@ -121,7 +121,7 @@ FASTA format:
     AAATCATGACGACTTGAAGTGAAAAAGTGAAAAATGAGAAATGAACGTGACGAC
     AAAATGACGAAATCATGACGACTTGAAGTGAAAAATAAATGACC
 
-### Exercises
+**Exercises**
 
 
 **Q1: How many sequences are there in the fasta file data/example.fasta?
@@ -183,7 +183,7 @@ there is a 1 in 1000 chance that this base was called incorrectly.
  | 50                 |   1 in 100,000                 |        99.999% | 
  | 60                 |   1 in 1,000,000               |        99.9999% |
 
-### Exercises 
+**Exercises** 
 
 
 **Q2: How many reads are there in the file example.fastq? (Hint:
@@ -213,7 +213,7 @@ Now let us have a closer look at the different parts of the SAM/BAM
 format.
 
 
-### Header Section
+**Header Section**
 
 The header section of a SAM file looks like:
 
@@ -227,7 +227,7 @@ document](https://samtools.github.io/hts-specs/SAMv1.pdf). Each record
 type can contain meta-data captured as a series of key-value pairs in
 the format of 'TAG:VALUE'.
 
-#### Read groups
+**Read groups**
 
 One useful record type is RG which can be used to describe each lane of
 sequencing. The RG code can be used to capture extra meta-data for the
@@ -251,7 +251,7 @@ While most of these are self explanitory, insert fragment size may
 occasionally be negative. This simply indicates that the reads found are
 overlapping while its size is less than 2 x read length.
 
-### Exercises
+**Exercises**
 
 Look at the following line from the header of a SAM file and answering
 the questions that follow:
@@ -268,7 +268,7 @@ the questions that follow:
 
 **Q7: What is the expected fragment insert size?**
 
-### Alignment Section
+**Alignment Section**
 
 The alignment section of SAM files contains one line per read alignment,
 an example is
@@ -307,7 +307,7 @@ SAM format.
 
 ![SAM format](img/SAM_BAM.png)
 
-### Exercises
+**Exercises**
 
 Let's have a look at example.sam. Notice that we can use the standard
 UNIX operations like **cat** on this file.
@@ -324,7 +324,7 @@ through the meaning of CIGAR strings in the next section)**
 
 **Q10: What is the inferred insert size of ERR003814.1408899?**
 
-### CIGAR string
+**CIGAR string**
 
 Column 6 of the alignment is the CIGAR string for that alignment. The
 CIGAR string provides a compact representation of sequence alignment.
@@ -370,7 +370,7 @@ and two more matches. At the end, we have seven soft clippings, 7S.
 These are clipped sequences that are present in the SEQ (Query SEQuence
 on the same strand as the reference).
 
-### Exercises
+**Exercises**
 
 **Q11: What does the CIGAR from Q9 mean?**
 
@@ -381,7 +381,7 @@ string?**
 Ref:   ACGT----ACGTACGT
 Read:  ACGTACGTACGTACGT
 ```
-### Flags
+**Flags**
 
 
 Column 2 of the alignment contains a combination of bitwise FLAGs
@@ -409,7 +409,7 @@ these four flags apply to the alignment and the alignment is paired-end,
 reverse complemented, sequence of the next template/mate of the read is
 reversed and the read aligned is the first segment in the template.
 
-#### Primary, secondary and supplementary alignments
+**Primary, secondary and supplementary alignments**
 
 
 A read that aligns to a single reference sequence (including insertions,
@@ -453,7 +453,7 @@ interacting with SAM and BAM files. Using the samtools view command,
 print the header of the BAM file:
 
 
-### Exercises
+**Exercises**
 
 **Q13: What version of the human assembly was used to perform the
 alignments? (Hint: Can you spot this somewhere in the \@SQ records?)**
@@ -562,7 +562,7 @@ samtools view alignment.bam chr4:1000-2000
 ```
 
 
-### Exercises
+**Exercises**
 
 **Q19: How many reads are mapped to region 20025000-20030000 on
 chromosome 1?**
@@ -576,7 +576,7 @@ overview of the different components of a VCF file:
 
 ![VCF format](img/VCF1.png)
 
-### VCF header
+**VCF header**
 
 The VCF header consists of meta-information lines (starting with `##`)
 and a header line (starting with `#`). All meta-information lines are
@@ -592,7 +592,7 @@ specification <http://samtools.github.io/hts-specs/VCFv4.3.pdf>. This
 can be accessed using a web browser and there is a copy in the QC
 directory.
 
-#### Header line
+**Header line**
 
 The header line starts with `#` and consists of 8 required fields:
 
@@ -623,7 +623,7 @@ data types are:
 
 -   GQ: Conditional genotype quality, encoded as a phred quality
 
-### Body
+**Body**
 
 In the body of the VCF, each row contains information about a position
 in the genome along with genotype information on samples for each
@@ -651,7 +651,7 @@ Bcftools comprises a set of programs for interacting with VCF and BCF
 files. It can be used to convert between VCF and BCF and to view or
 extract records from a region.
 
-### bcftools view
+**bcftools view**
 
 Let's have a look at the header of the file 1kg.bcf in the data
 directory. Note that bcftools uses **`-h`** to print only the header,
@@ -676,7 +676,7 @@ bcftools view -H -r 20:24042765-24043073 data/1kg.bcf
 ```
 
 
-### bcftools query
+**bcftools query**
 
 
 The versatile **bcftools query** command can be used to extract any VCF
@@ -735,7 +735,7 @@ position.
 There is more information about [expressions on the bcftools manual page
 ](http://samtools.github.io/bcftools/bcftools.html#expressions)
 
-### Exercises
+**Exercises**
 
 Now, try and answer the following questions about the file 1kg.bcf in
 the data directory. For more information about the different usage
@@ -769,7 +769,7 @@ calling:
 
 ![gVCF](img/gVCF.png)
 
-### Exercises 
+**Exercises** 
 
 **Q25: In the above example, what is the size of the reference-only
 block starting at position 9923?**
@@ -888,7 +888,7 @@ during library prep.
 
 ![Fragment size distribution](img/fragment_size_comparison.png)
 
-### Exercises 
+**Exercises** 
 
 **Q1: The figure below is from a 100bp paired-end sequencing. Can you
 spot any problems?**
@@ -940,13 +940,13 @@ grep ^'#' data/lane1.sorted.bam.bchk | grep 'Use'
 ```
 
 
-### Summary Numbers (SN)
+**Summary Numbers (SN)**
 
 This initial section contains a summary of the alignment and includes
 some general statistics. In particular, you can see how many bases
 mapped, and how much of the genome that was covered.
 
-### Exercises
+**Exercises**
 
 Now look at the output and try to answer the questions below.
 
@@ -960,7 +960,7 @@ Now look at the output and try to answer the questions below.
 
 **Q6: How many reads were paired properly?**
 
-### Generating QC plots
+**Generating QC plots**
 
 
 Finally, we will create some QC plots from the output of the stats
@@ -1049,7 +1049,7 @@ As you can see, this has created an index file for the reference genome
 called Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa.fai and the CRAM
 file yeast.cram.
 
-### Exercises
+**Exercises**
 
 **Q1: Since CRAM files use reference-based compression, we expect the
 CRAM file to be smaller than the BAM file. What is the size of the CRAM
