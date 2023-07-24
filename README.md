@@ -58,13 +58,19 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 
 ## Course manual
 **Module 1 - Intro to Unix/Linux**   
-[Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)  
+[Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)      
 
-**Module 2 - Introduction to Sequencing Technologies**  
-<!--- [Online Manual - Introduction to Sequencing Technologies](modules/)  --->
+[Online Manual - Intro to Unix/Linux Session 2 ](modules/Module_1_Session2_practical_assignment.docx.md)      
+
+
+**Module 2 - Introduction to Sequencing Technologies**    
+[Online Manual - Introduction to Sequencing Technologies](modules/Module2_Session1_base.md)
 
 **Module 3 - Sequencing data formats and QC**  
-<!--- [Online Manual - Sequencing data formats and QC](modules/)  --->
+[Online Manual - Sequencing data formats and QC Session 1](modules/Module3_Day1_Assignment.docx.md)      
+
+[Online Manual - Sequencing data formats and QC Session 2](modules/Module3_Day2_Data_formats_Assignment.md)      
+
   
 **Module 4 - Alignment to Reference**  
 <!--- [Online Manual - Alignment to Reference](modules/)  --->
