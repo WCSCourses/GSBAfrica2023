@@ -1,4 +1,4 @@
-# NGS Data formats and QC
+# Sequencing Data formats and QC
 
 ## Introduction
 
@@ -63,6 +63,10 @@ files.
 To get started, open a new terminal on your computer and type the
 command below:
 
+```
+cd ~/course-data/data_formats/
+```
+
 Now you can follow the instructions in the tutorial from here.
 
 ### Let's get started!
@@ -71,7 +75,17 @@ This tutorial assumes that you have samtools, bcftools and Picard tools
 installed on your computer. These are already installed on the VM you
 are using. To check that these are installed, you can run the following
 commands:
+```
+samtools --help
+```
 
+```
+bcftools --help
+```
+
+```
+picard -h
+```
 This should return the help message for samtools, bcftools and picard
 tools respectively.
 
@@ -81,6 +95,9 @@ To get started with the tutorial, go to the first section: Data Formats
 
 Here we will take a closer look at some of the most common NGS data
 formats. First, check you are in the correct directory.
+```
+pwd
+```
 
 It should display something like:
 
@@ -157,14 +174,14 @@ The Phred quality score is a measure of the quality of base calls. For
 example, a base assigned with a Phred quality score of 30 tells us that
 there is a 1 in 1000 chance that this base was called incorrectly.
 
-  Phred Quality Score   Probability of incorrect base call   Base call accuracy
-  --------------------- ------------------------------------ --------------------
-  10                    1 in 10                              90%
-  20                    1 in 100                             99%
-  30                    1 in 1000                            99.9%
-  40                    1 in 10,000                          99.99%
-  50                    1 in 100,000                         99.999%
-  60                    1 in 1,000,000                       99.9999%
+|  Phred Quality Score  |  Probability of incorrect base call  |  Base call accuracy |
+ | --------------------- | ------------------------------------ | -------------------- |
+ | 10                 |   1 in 10                      |        90% |
+ | 20                 |   1 in 100                     |        99% |
+  |30                 |   1 in 1000                    |        99.9% |
+  |40                 |   1 in 10,000                  |        99.99%  |
+ | 50                 |   1 in 100,000                 |        99.999% | 
+ | 60                 |   1 in 1,000,000               |        99.9999% |
 
 ### Exercises 
 
@@ -295,6 +312,10 @@ SAM format.
 Let's have a look at example.sam. Notice that we can use the standard
 UNIX operations like **cat** on this file.
 
+```
+cat data/example.sam
+```
+
 **Q8: What is the mapping quality of ERR003762.5016205? (Hint: can you
 use grep and awk to find this?)**
 
@@ -368,19 +389,19 @@ describing the alignment. The following table contains the information
 you can get from the bitwise FLAGs:
 
   | Hex   |  Dec |   Flag       |     Description                                           |
-  ------- ------ --------------- --------------------------------------------------------
-|  0x1     1      PAIRED          paired-end (or multiple-segment) sequencing technology    |
-|  0x2     2      PROPER_PAIR     each segment properly aligned according to the aligner    |
-|  0x4     4      UNMAP           segment unmapped                                          |
-|  0x8     8      MUNMAP          next segment in the template unmapped                     |    
-|  0x10    16     REVERSE         SEQ is reverse complemented                               |
-|  0x20    32     MREVERSE        SEQ of the next segment in the template is reversed       |
-|  0x40    64     READ1           the first segment in the template                         |    
-|  0x80    128    READ2           the last segment in the template                          |
-|  0x100   256    SECONDARY       secondary alignment                                       |
-|  0x200   512    QCFAIL          not passing quality controls                              |
-|  0x400   1024   DUP             PCR or optical duplicate                                  |
-|  0x800   2048   SUPPLEMENTARY   supplementary alignment                                    |
+|  ------- | ------ |  --------------- | -------------------------------------------------------- |
+|  0x1   |  1    |  PAIRED      |    paired-end (or multiple-segment) sequencing technology    |
+|  0x2   |  2    |  PROPER_PAIR |    each segment properly aligned according to the aligner    |
+|  0x4   |  4    |  UNMAP       |    segment unmapped                                          |
+|  0x8   |  8    |  MUNMAP      |    next segment in the template unmapped                     |    
+|  0x10  |  16   |  REVERSE     |    SEQ is reverse complemented                               |
+|  0x20  |  32   |  MREVERSE    |    SEQ of the next segment in the template is reversed       |
+|  0x40  |  64   |  READ1       |    the first segment in the template                         |    
+|  0x80  |  128  |  READ2       |    the last segment in the template                          |
+|  0x100 |  256  |  SECONDARY   |    secondary alignment                                       |
+|  0x200 |  512  |  QCFAIL      |    not passing quality controls                              |
+|  0x400 |  1024 |  DUP         |    PCR or optical duplicate                                  |
+|  0x800 |  2048 |  SUPPLEMENTARY |   supplementary alignment                                    |
 
 For example, if you have an alignment with FLAG set to 113, this can
 only be represented by decimal codes `64 + 32 + 16 + 1`, so we know that
@@ -431,9 +452,8 @@ directly on this file format. **Samtools** is a set of programs for
 interacting with SAM and BAM files. Using the samtools view command,
 print the header of the BAM file:
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+
+### Exercises
 
 **Q13: What version of the human assembly was used to perform the
 alignments? (Hint: Can you spot this somewhere in the \@SQ records?)**
@@ -442,10 +462,10 @@ alignments? (Hint: Can you spot this somewhere in the \@SQ records?)**
 represents?)**
 
 **Q15: What programs were used to create this BAM file? (Hint: have a
-look for the program record, \@PG)**
+look for the program record, @PG)**
 
 **Q16: What version of bwa was used to align the reads? (Hint: is there
-anything in the \@PG record that looks like it could be a version
+anything in the @PG record that looks like it could be a version
 tag?)**
 
 The output from running samtools view on a BAM file without any options
@@ -453,15 +473,19 @@ is a headerless SAM file. This gets printed to STDOUT in the terminal,
 so we will want to pipe it to something. Let's have a look at the first
 read of the BAM file:
 
+```
+samtools view data/NA20538.bam | head -n 1
+```
+
 **Q17: What is the name of the first read? (Hint: have a look at the
-[alignment section](formats.ipynb#Alignment-Section) if you can't recall
+alignment section if you can't recall
 the different fields)**
 
 **Q18: What position does the alignment of the read start at?**
 
-::: {#cram}
+
 ## CRAM
-:::
+
 
 Even though BAM files are compressed, they are still very large.
 Typically they use 1.5-2 bytes for each base pair of sequencing data
@@ -496,46 +520,54 @@ Since samtools 1.3, CRAM files can be read in the same way that BAM
 files can. We will look closer at how you can convert between SAM, BAM
 and CRAM formats in the next section.
 
-::: {#indexing}
+
 ## Indexing
-:::
 
 To allow for fast random access of regions in BAM and CRAM files, they
 can be indexed. The files must first be coordinate-sorted rather that
 sorted by read name. This can be done using **samtools sort**. If no
 options are supplied, it will by default sort by the left-most position
 of the reference.
+```
+samtools sort -o data/NA20538_sorted.bam data/NA20538.bam
+```
 
 Now we can use **samtools index** to create an index file (.bai) for our
 sorted BAM file:
 
+```
+samtools index data/NA20538_sorted.bam
+```
+
 To look for reads mapped to a specific region, we can use **samtools
 view** and specify the region we are interested in as:
-RNAME\[:STARTPOS\[-ENDPOS\]\]. For example, to look at all the reads
+RNAME\[:STARTPOS[-ENDPOS]]. For example, to look at all the reads
 mapped to a region called chr4, we could use:
 
-`samtools view alignment.bam chr4`
+```
+samtools view alignment.bam chr4
+```
 
 To look at the region on chr4 beginning at position 1,000,000 and ending
 at the end of the chromosome, we can do:
-
-`samtools view alignment.bam chr4:1000000`
+```
+samtools view alignment.bam chr4:1000000`
+```
 
 And to explore the 1001bp long region on chr4 beginning at position
 1,000 and ending at position 2,000, we can use:
 
-`samtools view alignment.bam chr4:1000-2000`
+```
+samtools view alignment.bam chr4:1000-2000
+```
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+
+### Exercises
 
 **Q19: How many reads are mapped to region 20025000-20030000 on
 chromosome 1?**
 
-::: {#vcf}
 ## VCF
-:::
 
 The VCF file format was introduced to store variation data. VCF consists
 of tab-delimited text and is parsable by standard UNIX commands which
@@ -544,9 +576,7 @@ overview of the different components of a VCF file:
 
 ![VCF format](img/VCF1.png)
 
-::: {#vcf-header}
 ### VCF header
-:::
 
 The VCF header consists of meta-information lines (starting with `##`)
 and a header line (starting with `#`). All meta-information lines are
@@ -562,9 +592,7 @@ specification <http://samtools.github.io/hts-specs/VCFv4.3.pdf>. This
 can be accessed using a web browser and there is a copy in the QC
 directory.
 
-::: {#header-line}
 #### Header line
-:::
 
 The header line starts with `#` and consists of 8 required fields:
 
@@ -595,17 +623,13 @@ data types are:
 
 -   GQ: Conditional genotype quality, encoded as a phred quality
 
-::: {#body}
 ### Body
-:::
 
 In the body of the VCF, each row contains information about a position
 in the genome along with genotype information on samples for each
 position, all according to the fields in the header line.
 
-::: {#bcf}
 ## BCF
-:::
 
 BCF is a compressed binary representation of VCF.
 
@@ -627,32 +651,50 @@ Bcftools comprises a set of programs for interacting with VCF and BCF
 files. It can be used to convert between VCF and BCF and to view or
 extract records from a region.
 
-::: {#bcftools-view}
 ### bcftools view
-:::
 
 Let's have a look at the header of the file 1kg.bcf in the data
 directory. Note that bcftools uses **`-h`** to print only the header,
 while samtools uses **`-H`** for this.
 
+'''
+bcftools view -h data/1kg.bcf
+'''
+
 Similarly to BAM, BCF supports random access, that is, fast retrieval
 from a given region. For this, the file must be indexed:
+```
+bcftools index data/1kg.bcf
+```
 
 Now we can extract all records from the region 20:24042765-24043073,
 using the **`-r`** option. The **`-H`** option will make sure we don't
 include the header in the output:
 
-::: {#bcftools-query}
+```
+bcftools view -H -r 20:24042765-24043073 data/1kg.bcf
+```
+
+
 ### bcftools query
-:::
+
 
 The versatile **bcftools query** command can be used to extract any VCF
 field. Combined with standard UNIX commands, this gives a powerful tool
 for quick querying of VCFs. Have a look at the usage options:
 
+```
+􀄊 bcftools query -h
+```
+
 Let's try out some useful options. As you can see from the usage,
 **`-l`** will print a list of all the samples in the file. Give this a
 go:
+
+```
+bcftools query -l data/1kg.bcf
+```
+
 
 Another very useful option is **`-s`** which allows you to extract all
 the data relating to a particular sample. This is a [common
@@ -660,15 +702,27 @@ option](http://samtools.github.io/bcftools/bcftools.html#common_options)
 meaning it can be used for many bcftools commands, like `bcftools view`.
 Try this for sample HG00131:
 
+```
+bcftools view -s HG00131 data/1kg.bcf | head -n 50
+```
+
 The format option, **`-f`** can be used to select what gets printed from
 your query command. For example, the following will print the position,
 reference base and alternate base for sample HG00131, separated by tabs:
+
+```
+bcftools query -f'%POS\t%REF\t%ALT\n' -s HG00131 data/1kg.bcf | head
+```
 
 Finally, let's look at the **`-i`** option. With this option we can
 select only sites for which a particular expression is true. For
 instance, if we only want to look at sites that have at least 2
 alternate alleles across all samples, we can use the following
 expression (piped to `head` to only show a subset of the output):
+
+```
+bcftools query -f'%CHROM\t%POS\n' -i 'AC[0]>2' data/1kg.bcf | head
+```
 
 We use **`-i`** with the expression `AC``[``0``]``>2`. AC is an info
 field that holds the \_\_a\_\_llele \_\_c\_\_ount. Some fields can hold
@@ -678,12 +732,10 @@ instead of 1), and that this value should be \> 2. To format our output,
 we use **`-f`** to specify that we want to print the chromosome name and
 position.
 
-There is more information about expressions on the bcftools manual page
-<http://samtools.github.io/bcftools/bcftools.html#expressions>
+There is more information about [expressions on the bcftools manual page
+](http://samtools.github.io/bcftools/bcftools.html#expressions)
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises
 
 Now, try and answer the following questions about the file 1kg.bcf in
 the data directory. For more information about the different usage
