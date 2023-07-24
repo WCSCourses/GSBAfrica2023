@@ -251,7 +251,7 @@ While most of these are self explanitory, insert fragment size may
 occasionally be negative. This simply indicates that the reads found are
 overlapping while its size is less than 2 x read length.
 
-### Exercises {#exercises}
+### Exercises
 
 Look at the following line from the header of a SAM file and answering
 the questions that follow:
@@ -307,7 +307,7 @@ SAM format.
 
 ![SAM format](img/SAM_BAM.png)
 
-### Exercises {#exercises}
+### Exercises
 
 Let's have a look at example.sam. Notice that we can use the standard
 UNIX operations like **cat** on this file.
@@ -757,9 +757,7 @@ browser.
 and a read depth bigger than 10? (Hint: you can use pipes to combine
 bcftools queries)**
 
-::: {#gvcf}
 ## gVCF
-:::
 
 Often it is not enough to know variant sites only. For instance, we
 don't know if a site was dropped because it matches the reference or
@@ -771,9 +769,7 @@ calling:
 
 ![gVCF](img/gVCF.png)
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises 
 
 **Q25: In the above example, what is the size of the reference-only
 block starting at position 9923?**
@@ -791,9 +787,7 @@ QC is an important part of any analysis. In this section we are going to
 look at some of the metrics and graphs that can be used to assess the QC
 of NGS data.
 
-::: {#base-quality}
 ## Base quality
-:::
 
 [Illumina
 sequencing](https://en.wikipedia.org/wiki/Illumina_dye_sequencing)
@@ -820,9 +814,8 @@ poor sequencing run (right).
 
 ![Base quality](img/base_qual_comparison.png)
 
-::: {#other-base-calling-errors}
 ## Other base calling errors
-:::
+
 
 There are several different reasons for a base to be called incorrectly,
 as shown in the figure below. **Phasing noise** and **signal decay** is
@@ -843,9 +836,7 @@ causing a false high Thymine trend.
 *Base-calling for next-generation sequencing platforms*, doi:
 [10.1093/bib/bbq077](https://academic.oup.com/bib/article/12/5/489/268399)
 
-::: {#mismatches-per-cycle}
 ## Mismatches per cycle
-:::
 
 Aligning reads to a high-quality reference genome can provide insight to
 the quality of a sequencing run by showing you the mismatches to the
@@ -861,9 +852,8 @@ mismatches compared to the other cycles.
 
 ![Mismatches per cycle](img/mismatch_per_cycle_comparison.png)
 
-::: {#gc-content}
 ## GC content
-:::
+
 
 It is a good idea to compare the GC content of the reads against the
 expected distribution in a reference sequence. The GC content varies
@@ -876,9 +866,8 @@ sample.
 
 ![GC Content](img/gc_bias.png)
 
-::: {#gc-content-by-cycle}
 ## GC content by cycle
-:::
+
 
 Looking at the GC content per cycle can help detect if the adapter
 sequence was trimmed. For a random library, it is expected to be little
@@ -889,9 +878,7 @@ likely due to adapter sequences that have not been removed.
 
 ![GC content by cycle](img/acgt_per_cycle_comparison.png)
 
-::: {#fragment-size}
 ## Fragment size
-:::
 
 For paired-end sequencing the size of DNA fragments also matters. In the
 first of the examples below, the fragment size peaks around 440 bp. In
@@ -901,18 +888,14 @@ during library prep.
 
 ![Fragment size distribution](img/fragment_size_comparison.png)
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises 
 
 **Q1: The figure below is from a 100bp paired-end sequencing. Can you
 spot any problems?**
 
 ![Q1 Insert size distribution](img/insert_size_quiz.png)
 
-::: {#insertionsdeletions-per-cycle}
 ## Insertions/Deletions per cycle
-:::
 
 Sometimes, air bubbles occur in the flow cell, which can manifest as
 false indels. The spike in the right image provides an example of how
@@ -920,9 +903,7 @@ this can look.
 
 ![Indels per cycle](img/indels_per_cycle_comparison.png)
 
-::: {#generating-qc-stats}
 ## Generating QC stats
-:::
 
 Now let's try this out! We will generate QC stats for two lanes of
 Illumina paired-end sequencing data from yeast. The reads have already
@@ -936,8 +917,16 @@ specific tags, while **`-F`** can be used to *filter out* reads with
 specific tags. The following command will include only primary
 alignments:
 
+```
+samtools stats -F SECONDARY data/lane1.sorted.bam > data/lane1.sorted.bam.bchk
+```
+
 Have a look at the first 47 lines of the statistics file that was
 generated:
+
+```
+head -n 47 data/lane1.sorted.bam.bchk
+```
 
 This file contains a number of useful stats that we can use to get a
 better picture of our data, and it can even be plotted with
@@ -946,17 +935,18 @@ look at some of the different stats. Each part of the file starts with a
 `#` followed by a description of the section and how to extract it from
 the file. Let's have a look at all the sections in the file:
 
-::: {#summary-numbers-sn}
+```
+grep ^'#' data/lane1.sorted.bam.bchk | grep 'Use'
+```
+
+
 ### Summary Numbers (SN)
-:::
 
 This initial section contains a summary of the alignment and includes
 some general statistics. In particular, you can see how many bases
 mapped, and how much of the genome that was covered.
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises
 
 Now look at the output and try to answer the questions below.
 
@@ -970,13 +960,16 @@ Now look at the output and try to answer the questions below.
 
 **Q6: How many reads were paired properly?**
 
-::: {#generating-qc-plots}
 ### Generating QC plots
-:::
+
 
 Finally, we will create some QC plots from the output of the stats
 command using the command **plot-bamstats** which is included in the
 samtools package:
+
+```
+plot-bamstats -p data/lane1-plots/ data/lane1.sorted.bam.bchk
+```
 
 Now in your web browser open the file lane1-plots/index.html to view the
 QC information.
@@ -996,30 +989,37 @@ format to another. There are many tools available for converting between
 file formats, and we will use some of the most common ones: samtools,
 bcftools and Picard.
 
-::: {#sam-to-bam}
 ## SAM to BAM
-:::
 
 To convert from SAM to BAM format we are going to use the
 **`samtools view`** command. In this instance, we would like to include
 the SAM header, so we use the **`-h`** option:
-
+```
+samtools view -h data/NA20538.bam > data/NA20538.sam 
+```
 Now, have a look at the first ten lines of the SAM file. They should
 look like they did in the previous section when you viewed the BAM file
 header.
+
+```
+head data/NA20538.sam
+```
+
 
 Well that was easy! And converting SAM to BAM is just as
 straightforward. This time there is no need for the `-h` option, however
 we have to tell samtools that we want the output in BAM format. We do so
 by adding the **`-b`** option:
 
+```
+samtools view -b data/NA20538.sam > data/NA20538_2.bam
+```
+
 Samtools is very well documented, so for more usage options and
 functions, have a look at the samtools manual
 <http://www.htslib.org/doc/samtools-1.0.html>.
 
-::: {#bam-to-cram}
 ## BAM to CRAM
-:::
 
 The samtools view command can be used to convert a BAM file to CRAM
 format. In the data directory there is a BAM file called yeast.bam that
@@ -1036,15 +1036,20 @@ the output as CRAM, and the **`-T`** option to specify what reference
 file to use for the conversion. We also use the **`-o`** option to
 specify the name of the output file. Give this a try:
 
+```
+samtools view -C -T data/Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa -o data/yeast.cram data/yeast.bam
+```
+
 Have a look at what files were created:
+```
+ls -l data
+```
 
 As you can see, this has created an index file for the reference genome
 called Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa.fai and the CRAM
 file yeast.cram.
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises
 
 **Q1: Since CRAM files use reference-based compression, we expect the
 CRAM file to be smaller than the BAM file. What is the size of the CRAM
@@ -1055,11 +1060,12 @@ file?**
 To convert CRAM back to BAM, simply change `-C` to `-b` and change
 places for the input and output CRAM/BAM:
 
-    samtools view -b -T data/Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa -o data/yeast.bam data/yeast.cram
+``` 
+samtools view -b -T data/Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa -o data/yeast.bam data/yeast.cram
+```
 
-::: {#fastq-to-sam}
 ## FASTQ to SAM
-:::
+
 
 SAM format is mainly used to store alignment data, however in some cases
 we may want to store the unaligned data in SAM format and for this we
@@ -1070,15 +1076,21 @@ high-throughput sequencing data. .
 
 To convert the FASTQ files of lane 13681_1#18 to unaligned SAM format,
 run:
+```
+picard FastqToSam F1=data/13681_1#18_1.fastq.gz F2=data/13681_1#18_2.fastq.gz O=data/13681_1#18.sam SM=13681_1#18
+```
 
 From here you can go on and convert the SAM file to BAM and CRAM, as
 described previously. There are also multiple options for specifying
 what metadata to include in the SAM header. To see all available
 options, run:
 
-::: {#cram-to-fastq}
+
+```
+picard FastqToSam -h
+```
+
 ## CRAM to FASTQ
-:::
 
 It is possible to convert CRAM to FASTQ directly using the
 `samtools fastq` command. However, for many applications we need the
@@ -1086,22 +1098,30 @@ fastq files to be ordered so that the order of the reads in the first
 file match the order of the reads in the mate file. For this reason, we
 first use `samtools collate` to produce a collated BAM file.
 
+```
+samtools collate data/yeast.cram data/yeast.collated 
+```
+
 The newly produced BAM file will be called yeast.collated.bam. Let's use
 this to create two FASTQ files, one for the forward reads and one for
 the reverse reads:
+```
+samtools fastq -1 data/yeast.collated_1.fastq -2 data/yeast.collated_2.fastq data/yeast.collated.bam
+```
 
 For further information and usage options, have a look at the samtools
 manual page
 [(http://www.htslib.org/doc/samtools.html)](http://www.htslib.org/doc/samtools.html).
 
-::: {#vcf-to-bcf}
 ## VCF to BCF
-:::
 
 In a similar way that samtools view can be used to convert between SAM,
 BAM and CRAM, **`bcftools view`** can be used to convert between VCF and
 BCF. To convert the file called 1kg.bcf to a compressed VCF file called
 1kg.vcf.gz, run:
+```
+bcftools view -O z -o data/1kg.vcf.gz data/1kg.bcf
+```
 
 The **`-O`** option allows us to specify in what format we want the
 output, compressed BCF (b), uncompressed BCF (u), compressed VCF (z) or
@@ -1110,12 +1130,18 @@ the output file.
 
 Have a look at what files were generated (the options `-lrt` will list
 the files in reverse chronological order):
+```
+ls -lrt data
+```
 
 This also generated an index file, 1kg.bcf.csi.
 
 To convert a VCF file to BCF, we can run a similar command. If we want
 to keep the original BCF, we need to give the new one a different name
 so that the old one is not overwritten:
+```
+bcftools view -O b -o data/1kg_2.bcf data/1kg.vcf.gz
+```
 
 **Congratulations** you have reached the end of the Data formats and QC
 tutorial!
