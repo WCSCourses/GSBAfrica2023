@@ -1,12 +1,6 @@
----
-title: index
----
-
 # NGS Data formats and QC
 
-::: {#introduction}
 ## Introduction
-:::
 
 There are several file formats for storing Next Generation Sequencing
 (NGS) data. In this tutorial we will look at some of the most common
@@ -33,44 +27,33 @@ whether you are planning to use something you have sequenced yourself or
 publicly available data. In the latter part of this tutorial we will
 describe how to perform a QC assessment for your NGS data.
 
-::: {#learning-outcomes}
-## Learning outcomes
-:::
+### Learning outcomes
 
 On completion of the tutorial, you can expect to be able to:
 
 -   Describe the different NGS data formats available (FASTQ, SAM/BAM,
     CRAM, VCF/BCF)
-
 -   Perform a QC assessment of high throughput sequence data
-
 -   Perform conversions between the different data formats
 
-::: {#tutorial-sections}
-## Tutorial sections
-:::
+### Tutorial sections
 
 This tutorial comprises the following sections:\
-1. [Data formats](formats.ipynb)\
-2. [QC assessment](assessment.ipynb)
+1. Data formats
+2. QC assessment
 
 If you have time you can also complete:
 
-1.  [File conversion](conversion.ipynb)
+1.  File conversion
 
-::: {#authors}
-## Authors
-:::
+### Authors
 
 This tutorial was written by [Jacqui
-Keane](https://github.com/jacquikeane) and [Sara
-Sjunnebo](https://github.com/ssjunnebo) based on material from [Petr
-Danecek](https://github.com/pd3) and [Thomas
-Keane](https://github.com/tk2).
+Keane](https://github.com/jacquikeane) and [Sara Sjunnebo](https://github.com/ssjunnebo) based on material from [Petr Danecek](https://github.com/pd3) and [Thomas Keane](https://github.com/tk2).
 
-::: {#running-the-commands-from-this-tutorial}
-## Running the commands from this tutorial
-:::
+It has been reproduced for Wellcome Connecting Science - GSB_Africa by Jane Mwangi and Shaun Aron. 
+
+### Running the commands from this tutorial
 
 You can follow this tutorial by typing all the commands you see into a
 terminal window. This is similar to the "Command Prompt" window on MS
@@ -82,9 +65,7 @@ command below:
 
 Now you can follow the instructions in the tutorial from here.
 
-::: {#lets-get-started}
-## Let's get started!
-:::
+### Let's get started!
 
 This tutorial assumes that you have samtools, bcftools and Picard tools
 installed on your computer. These are already installed on the VM you
@@ -94,8 +75,7 @@ commands:
 This should return the help message for samtools, bcftools and picard
 tools respectively.
 
-To get started with the tutorial, go to the first section: [Data
-formats](formats.ipynb)
+To get started with the tutorial, go to the first section: Data Formats
 
 # Data formats for NGS data
 
@@ -106,9 +86,8 @@ It should display something like:
 
 `/home/manager/course_data/data_formats/`
 
-::: {#fasta}
 ## FASTA
-:::
+
 
 The FASTA format is used to store both nucleotide data and protein
 sequences. Each sequence in a FASTA file is represented by two parts, a
@@ -125,16 +104,14 @@ FASTA format:
     AAATCATGACGACTTGAAGTGAAAAAGTGAAAAATGAGAAATGAACGTGACGAC
     AAAATGACGAAATCATGACGACTTGAAGTGAAAAATAAATGACC
 
-::: {#exercises}
 ### Exercises
-:::
+
 
 **Q1: How many sequences are there in the fasta file data/example.fasta?
 (Hint: is there a grep option you can use?)**
 
-::: {#fastq}
 ## FASTQ
-:::
+
 
 FASTQ is a data format for sequencing reads. It is an extension to the
 FASTA file format, and includes a quality score for each base. Have a
@@ -159,8 +136,7 @@ We can see that for each read we get four lines:
 
 3.  Starts with `+` and optionally contains the ID again
 
-4.  The per base [Phred quality
-    score](https://en.wikipedia.org/wiki/Phred_quality_score)
+4.  The per base [Phred quality score](https://en.wikipedia.org/wiki/Phred_quality_score)
 
 The quality scores range (in theory) from 1 to 94 and are encoded as
 [ASCII characters](https://en.wikipedia.org/wiki/ASCII). The first 32
@@ -190,20 +166,17 @@ there is a 1 in 1000 chance that this base was called incorrectly.
   50                    1 in 100,000                         99.999%
   60                    1 in 1,000,000                       99.9999%
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises 
+
 
 **Q2: How many reads are there in the file example.fastq? (Hint:
 remember that `@` is a possible quality score. Is there something else
 in the header that is unique?)**
 
-::: {#sam}
 ## SAM
-:::
 
-[SAM (Sequence
-Alignment/Map)](https://samtools.github.io/hts-specs/SAMv1.pdf) format
+
+[SAM (Sequence Alignment/Map)](https://samtools.github.io/hts-specs/SAMv1.pdf) format
 is a unified format for storing read alignments to a reference genome.
 It is a standard format for storing NGS sequencing reads, base
 qualities, associated meta-data and alignments of the data to a
@@ -222,9 +195,8 @@ it throughout this tutorial.
 Now let us have a closer look at the different parts of the SAM/BAM
 format.
 
-::: {#header-section}
+
 ### Header Section
-:::
 
 The header section of a SAM file looks like:
 
@@ -238,9 +210,7 @@ document](https://samtools.github.io/hts-specs/SAMv1.pdf). Each record
 type can contain meta-data captured as a series of key-value pairs in
 the format of 'TAG:VALUE'.
 
-::: {#read-groups}
 #### Read groups
-:::
 
 One useful record type is RG which can be used to describe each lane of
 sequencing. The RG code can be used to capture extra meta-data for the
@@ -264,9 +234,7 @@ While most of these are self explanitory, insert fragment size may
 occasionally be negative. This simply indicates that the reads found are
 overlapping while its size is less than 2 x read length.
 
-::: {#exercises}
 ### Exercises {#exercises}
-:::
 
 Look at the following line from the header of a SAM file and answering
 the questions that follow:
@@ -283,9 +251,7 @@ the questions that follow:
 
 **Q7: What is the expected fragment insert size?**
 
-::: {#alignment-section}
 ### Alignment Section
-:::
 
 The alignment section of SAM files contains one line per read alignment,
 an example is
@@ -324,9 +290,7 @@ SAM format.
 
 ![SAM format](img/SAM_BAM.png)
 
-::: {#exercises}
 ### Exercises {#exercises}
-:::
 
 Let's have a look at example.sam. Notice that we can use the standard
 UNIX operations like **cat** on this file.
@@ -339,9 +303,7 @@ through the meaning of CIGAR strings in the next section)**
 
 **Q10: What is the inferred insert size of ERR003814.1408899?**
 
-::: {#cigar-string}
 ### CIGAR string
-:::
 
 Column 6 of the alignment is the CIGAR string for that alignment. The
 CIGAR string provides a compact representation of sequence alignment.
@@ -362,21 +324,24 @@ symbols of a CIGAR string:
 
 Below are two examples describing the CIGAR string in more detail.
 
-**Example 1:**\
-Ref:     ACGTACGTACGTACGT\
-Read:  ACGT- - - - ACGTACGA\
+**Example 1:**            
+```
+Ref:   ACGTACGTACGTACGT
+Read:  ACGT----ACGTACGA
 Cigar: 4M 4D 8M
-
+```
 The first four bases in the read are the same as in the reference, so we
 can represent these as 4M in the CIGAR string. Next comes 4 deletions,
 represented by 4D, followed by 7 alignment matches and one alignment
 mismatch, represented by 8M. Note that the mismatch at position 16 is
 included in 8M. This is because it still aligns to the reference.
 
-**Example 2:**\
-Ref:     ACTCAGTG- - GT\
-Read:  ACGCA- TGCAGTtagacgt\
+**Example 2:**
+```
+Ref:   ACTCAGTG--GT
+Read:  ACGCA-TGCAGTtagacgt
 Cigar: 5M 1D 2M 2I 2M 7S
+```
 
 Here we start off with 5 alignment matches and mismatches, followed by
 one deletion. Then we have two more alignment matches, two insertions
@@ -384,40 +349,38 @@ and two more matches. At the end, we have seven soft clippings, 7S.
 These are clipped sequences that are present in the SEQ (Query SEQuence
 on the same strand as the reference).
 
-::: {#exercises}
-### Exercises {#exercises}
-:::
+### Exercises
 
 **Q11: What does the CIGAR from Q9 mean?**
 
 **Q12: How would you represent the following alignment with a CIGAR
 string?**
 
-Ref:     ACGT- - - - ACGTACGT\
+```
+Ref:   ACGT----ACGTACGT
 Read:  ACGTACGTACGTACGT
-
-::: {#flags}
+```
 ### Flags
-:::
+
 
 Column 2 of the alignment contains a combination of bitwise FLAGs
 describing the alignment. The following table contains the information
 you can get from the bitwise FLAGs:
 
-  Hex     Dec    Flag            Description
+  | Hex   |  Dec |   Flag       |     Description                                           |
   ------- ------ --------------- --------------------------------------------------------
-  0x1     1      PAIRED          paired-end (or multiple-segment) sequencing technology
-  0x2     2      PROPER_PAIR     each segment properly aligned according to the aligner
-  0x4     4      UNMAP           segment unmapped
-  0x8     8      MUNMAP          next segment in the template unmapped
-  0x10    16     REVERSE         SEQ is reverse complemented
-  0x20    32     MREVERSE        SEQ of the next segment in the template is reversed
-  0x40    64     READ1           the first segment in the template
-  0x80    128    READ2           the last segment in the template
-  0x100   256    SECONDARY       secondary alignment
-  0x200   512    QCFAIL          not passing quality controls
-  0x400   1024   DUP             PCR or optical duplicate
-  0x800   2048   SUPPLEMENTARY   supplementary alignment
+|  0x1     1      PAIRED          paired-end (or multiple-segment) sequencing technology    |
+|  0x2     2      PROPER_PAIR     each segment properly aligned according to the aligner    |
+|  0x4     4      UNMAP           segment unmapped                                          |
+|  0x8     8      MUNMAP          next segment in the template unmapped                     |    
+|  0x10    16     REVERSE         SEQ is reverse complemented                               |
+|  0x20    32     MREVERSE        SEQ of the next segment in the template is reversed       |
+|  0x40    64     READ1           the first segment in the template                         |    
+|  0x80    128    READ2           the last segment in the template                          |
+|  0x100   256    SECONDARY       secondary alignment                                       |
+|  0x200   512    QCFAIL          not passing quality controls                              |
+|  0x400   1024   DUP             PCR or optical duplicate                                  |
+|  0x800   2048   SUPPLEMENTARY   supplementary alignment                                    |
 
 For example, if you have an alignment with FLAG set to 113, this can
 only be represented by decimal codes `64 + 32 + 16 + 1`, so we know that
@@ -425,9 +388,8 @@ these four flags apply to the alignment and the alignment is paired-end,
 reverse complemented, sequence of the next template/mate of the read is
 reversed and the read aligned is the first segment in the template.
 
-::: {#primary-secondary-and-supplementary-alignments}
 #### Primary, secondary and supplementary alignments
-:::
+
 
 A read that aligns to a single reference sequence (including insertions,
 deletions, skips and clipping but not direction changes), is a **linear
@@ -443,9 +405,8 @@ Sometimes a read maps equally well to more than one spot. In these
 cases, one of the possible alignments is marked as the **primary**
 alignment and the rest are marked as **secondary** alignments.
 
-::: {#bam}
 ## BAM
-:::
+
 
 BAM (Binary Alignment/Map) format, is a compressed binary version of
 SAM. This means that, while SAM is human readable, BAM is only readable
