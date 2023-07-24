@@ -1,18 +1,8 @@
-**NGS Bioinformatics**
+# Sequencing Data Processing and QC
 
-**Module topic: NGS Data Processing and QC**
+## **FASTQ Data QC**
 
-**Contact session title: Read Data QC**
-
-**Trainer: Fatma Guerfali and Shaun Aron**
-
-**Participant:** \<*write your name here\>*
-
-**Date:** \<*write today's date here*\>
-
-**[FASTQ Data QC]{.underline}**
-
-**[Introduction]{.underline}**
+**[Introduction]**
 
 In the assignment, you will have an opportunity to view and run a set of
 FASTQ files through the FASTQC program and assess the html output
@@ -29,50 +19,53 @@ reports.
 
 -   *Compare a « good » and a « bad » quality dataset.*
 
-**[Tools used in this session]{.underline}**
+**Tools used in this session**
 
 *FASTQC -*
 [*https://www.bioinformatics.babraham.ac.uk/projects/fastqc/*](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 
 *Trimmomatic - <https://github.com/usadellab/Trimmomatic>*
 
-**[Please note]{.underline}**
-
--   **Hand-in information** please upload your completed assignment to
-    the Vula 'Assignments' tab. Take note of the final hand-in date for
-    each assignment, which will be indicated on Vula.
+**Please note**
+**Hand-in information**             
+Please upload your completed assignment via the Vula 'Assignments' tab. Take note of the final hand-in date for each assignment, which will be indicated on Vula. Make use of the editable docx file on Vula to fill in your answers. 
 
 **Task 1: Quality Control of a FASTQ dataset**
 
-*The datasets for this assignment can be found on your VM here:
-\~/course_data/data_formats/data*
+The datasets for this assignment can be found on your VM here:
 
-*The dataset you will be working with first is paired end reads from an
+```
+~/course_data/data_formats/data*
+```
+
+The dataset you will be working with first is paired end reads from an
 Escherichia coli K1 sample. The data has been produced on the Illumina
-MiSeq platform and is stored in the SRR957824.zip archive.*
-
-*cd /course_data/data_formats/data*
-
+MiSeq platform and is stored in the SRR957824.zip archive.
+```
+cd /course_data/data_formats/data
+```
 Unzip the SRR957824 archive and cd into the unzipped directory
-
+```
 gunzip SRR957824
-
 cd SRR957824
-
+```
 View the files in the directory.
-
+```
 ls SRR957824
-
+```
 View the FASTQ files
+```
+zcat SRR957824_1.fastq.gz | less
+```
+Tip: You can use the *space bar* to scroll through the file and *Q* to quit. The suffix of _1 indicates that the file contains data for Read1.
 
-zcat SRR957824_1.fastq.gz \| less
 
-Tip: You can use the *space bar* to scroll through the file and *Q* to
-quit. The suffix of \_1 indicates that the file contains data for Read1.
 
 Using a similar approach you can view the contents of the Read2 file.
 
+```
 zcat SRR957824_2.fastq.gz
+```
 
 **Question 1: Why are there two files for the single sample dataset?**
 
@@ -111,6 +104,7 @@ browser
 In a similar way open the quality control report for Read2.
 
 firefox SRR957824_2_fastqc.html
+
 
 **Task 3: Interpretation of QC report**
 
