@@ -2,7 +2,7 @@
 
 ## **FASTQ Data QC**
 
-**[Introduction]**
+### **Introduction**
 
 In the assignment, you will have an opportunity to view and run a set of
 FASTQ files through the FASTQC program and assess the html output
@@ -19,7 +19,7 @@ reports.
 
 -   *Compare a « good » and a « bad » quality dataset.*
 
-**Tools used in this session**
+### **Tools used in this session**
 
 *FASTQC -*
 [*https://www.bioinformatics.babraham.ac.uk/projects/fastqc/*](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
@@ -30,7 +30,7 @@ reports.
 **Hand-in information**             
 Please upload your completed assignment via the Vula 'Assignments' tab. Take note of the final hand-in date for each assignment, which will be indicated on Vula. Make use of the editable docx file on Vula to fill in your answers. 
 
-**Task 1: Quality Control of a FASTQ dataset**
+### **Task 1: Quality Control of a FASTQ dataset**
 
 The datasets for this assignment can be found on your VM here:
 
@@ -59,7 +59,7 @@ zcat SRR957824_1.fastq.gz | less
 ```
 Tip: You can use the *space bar* to scroll through the file and *Q* to quit. The suffix of _1 indicates that the file contains data for Read1.
 
-
+![reportout1](img/mod3report1png.png)
 
 Using a similar approach you can view the contents of the Read2 file.
 
@@ -67,6 +67,9 @@ Using a similar approach you can view the contents of the Read2 file.
 zcat SRR957824_2.fastq.gz
 ```
 
+![reportout2](img/mod3report2png.png)
+
+### Questions:
 **Question 1: Why are there two files for the single sample dataset?**
 
 **Task 2: Run FASTQC on your dataset**
@@ -74,16 +77,22 @@ zcat SRR957824_2.fastq.gz
 The next step is to access the quality of our raw reads. We will do this
 by running FASTQC on our dataset.
 
+```
 fastqc SRR957824_1.fastq.gz
+```
 
 You may also run the analysis in parallel if you have multiple FASTQ
 files in a single directory.
 
+```
 fastqc SRR957824_1.fastq.gz SRR957824_2.fastq.gz
+```
 
 or using a wildcard
 
+```
 fastqc \*.fastq.gz
+```
 
 Tip: A tool called MultiQC (<https://multiqc.info/>) can be used to
 combine the results from several QC outputs into a single report. This
@@ -96,15 +105,18 @@ Once the analysis is complete, you will notice that new files with a
 report and images produced by the FASTQC program. We will open the file
 in the Firefox browser.
 
+```
 firefox SRR957824_1_fastqc.html
+```
 
 This command should open the html report for read1 in the Firefox
 browser
 
 In a similar way open the quality control report for Read2.
 
+```
 firefox SRR957824_2_fastqc.html
-
+```
 
 **Task 3: Interpretation of QC report**
 
@@ -118,33 +130,27 @@ that you understand the information in each report.
 
 **Question 3: What can be done to improve the quality of the reads?**
 
-**Trimming**
+### **Trimming**
 
-Trimming can be done using a tool called Trimmomatic
-(<https://github.com/usadellab/Trimmomatic>)
+Trimming can be done using a tool called [Trimmomatic](https://github.com/usadellab/Trimmomatic)
 
-![](media/image9.png){width="8.004166666666666in"
-height="3.578472222222222in"}
+![](img/mod3codeblock1.png)
 
 Below is an example for using Trimmomatic. Trimmomatic will produce both
 paired and unpaired datasets from a paired-end set of FASTQ files. The
 file ILLUMINACLIP:TrueSeq3-PE.fa contains the adapter sequences
 associated with that sequencing platform.
 
-![](media/image11.png){width="8.114489282589677in"
-height="0.9157895888013998in"}
+![](img/mod3codeblock2.png)
 
-![](media/image12.png){width="7.142832458442695in"
-height="1.8947364391951007in"}
 
-Run the command below in order to trim your fastq files. Ensure that you
-understand what each of the options in the command means.
+![](img/mod3codeblock2.png)
 
-trimmomatic PE SRR957824_1.fastq SRR957824_2.fastq
-SRR957824_1_paired.fq.gz SRR957824_1_unpaired.fq.gz
-SRR957824_2_paired.fq.gz SRR957824_2_unpaired.fq.gz LEADING:15
-TRAILING:15 SLIDINGWINDOW:4:20 MINLEN:100
 
+Run the command below in order to trim your fastq files. Ensure that you understand what each of the options in the command means.            
+```
+trimmomatic PE SRR957824_1.fastq SRR957824_2.fastq SRR957824_1_paired.fq.gz SRR957824_1_unpaired.fq.gz SRR957824_2_paired.fq.gz SRR957824_2_unpaired.fq.gz LEADING:15 TRAILING:15 SLIDINGWINDOW:4:20 MINLEN:100
+```
 **Question 4: Explain what each of the options in the trimmomatic
 command above specifying. i.e. LEADING, TRAILING, SLIDINGWINDOW,
 MINLEN.**
