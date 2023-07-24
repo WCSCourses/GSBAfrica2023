@@ -58,7 +58,7 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 
 ## Course manual
 **Module 1 - Intro to Unix/Linux**   
-<!--- [Online Manual - Intro to Unix/Linux](modules/)  --->   
+[Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)  
 
 **Module 2 - Introduction to Sequencing Technologies**  
 <!--- [Online Manual - Introduction to Sequencing Technologies](modules/)  --->
