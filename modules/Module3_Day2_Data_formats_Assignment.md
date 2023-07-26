@@ -103,7 +103,7 @@ It should display something like:
 
 `/home/manager/course_data/data_formats/`
 
-## FASTA
+**FASTA**
 
 
 The FASTA format is used to store both nucleotide data and protein
@@ -127,7 +127,7 @@ FASTA format:
 **Q1: How many sequences are there in the fasta file data/example.fasta?
 (Hint: is there a grep option you can use?)**
 
-## FASTQ
+**FASTQ**
 
 
 FASTQ is a data format for sequencing reads. It is an extension to the
@@ -190,7 +190,7 @@ there is a 1 in 1000 chance that this base was called incorrectly.
 remember that `@` is a possible quality score. Is there something else
 in the header that is unique?)**
 
-## SAM
+**SAM**
 
 
 [SAM (Sequence Alignment/Map)](https://samtools.github.io/hts-specs/SAMv1.pdf) format
@@ -426,7 +426,7 @@ Sometimes a read maps equally well to more than one spot. In these
 cases, one of the possible alignments is marked as the **primary**
 alignment and the rest are marked as **secondary** alignments.
 
-## BAM
+**BAM**
 
 
 BAM (Binary Alignment/Map) format, is a compressed binary version of
@@ -484,7 +484,7 @@ the different fields)**
 **Q18: What position does the alignment of the read start at?**
 
 
-## CRAM
+**CRAM**
 
 
 Even though BAM files are compressed, they are still very large.
@@ -567,7 +567,7 @@ samtools view alignment.bam chr4:1000-2000
 **Q19: How many reads are mapped to region 20025000-20030000 on
 chromosome 1?**
 
-## VCF
+**VCF**
 
 The VCF file format was introduced to store variation data. VCF consists
 of tab-delimited text and is parsable by standard UNIX commands which
@@ -629,7 +629,7 @@ In the body of the VCF, each row contains information about a position
 in the genome along with genotype information on samples for each
 position, all according to the fields in the header line.
 
-## BCF
+**BCF**
 
 BCF is a compressed binary representation of VCF.
 
@@ -757,7 +757,7 @@ browser.
 and a read depth bigger than 10? (Hint: you can use pipes to combine
 bcftools queries)**
 
-## gVCF
+**gVCF**
 
 Often it is not enough to know variant sites only. For instance, we
 don't know if a site was dropped because it matches the reference or
@@ -787,7 +787,7 @@ QC is an important part of any analysis. In this section we are going to
 look at some of the metrics and graphs that can be used to assess the QC
 of NGS data.
 
-## Base quality
+**Base quality**
 
 [Illumina
 sequencing](https://en.wikipedia.org/wiki/Illumina_dye_sequencing)
@@ -814,7 +814,7 @@ poor sequencing run (right).
 
 ![Base quality](img/base_qual_comparison.png)
 
-## Other base calling errors
+**Other base calling errors**
 
 
 There are several different reasons for a base to be called incorrectly,
@@ -836,7 +836,7 @@ causing a false high Thymine trend.
 *Base-calling for next-generation sequencing platforms*, doi:
 [10.1093/bib/bbq077](https://academic.oup.com/bib/article/12/5/489/268399)
 
-## Mismatches per cycle
+**Mismatches per cycle**
 
 Aligning reads to a high-quality reference genome can provide insight to
 the quality of a sequencing run by showing you the mismatches to the
@@ -852,7 +852,7 @@ mismatches compared to the other cycles.
 
 ![Mismatches per cycle](img/mismatch_per_cycle_comparison.png)
 
-## GC content
+**GC content**
 
 
 It is a good idea to compare the GC content of the reads against the
@@ -866,7 +866,7 @@ sample.
 
 ![GC Content](img/gc_bias.png)
 
-## GC content by cycle
+**GC content by cycle**
 
 
 Looking at the GC content per cycle can help detect if the adapter
@@ -878,7 +878,7 @@ likely due to adapter sequences that have not been removed.
 
 ![GC content by cycle](img/acgt_per_cycle_comparison.png)
 
-## Fragment size
+**Fragment size**
 
 For paired-end sequencing the size of DNA fragments also matters. In the
 first of the examples below, the fragment size peaks around 440 bp. In
@@ -895,7 +895,7 @@ spot any problems?**
 
 ![Q1 Insert size distribution](img/insert_size_quiz.png)
 
-## Insertions/Deletions per cycle
+**Insertions/Deletions per cycle
 
 Sometimes, air bubbles occur in the flow cell, which can manifest as
 false indels. The spike in the right image provides an example of how
@@ -903,7 +903,7 @@ this can look.
 
 ![Indels per cycle](img/indels_per_cycle_comparison.png)
 
-## Generating QC stats
+**Generating QC stats**
 
 Now let's try this out! We will generate QC stats for two lanes of
 Illumina paired-end sequencing data from yeast. The reads have already
@@ -989,7 +989,7 @@ format to another. There are many tools available for converting between
 file formats, and we will use some of the most common ones: samtools,
 bcftools and Picard.
 
-## SAM to BAM
+**SAM to BAM**
 
 To convert from SAM to BAM format we are going to use the
 **`samtools view`** command. In this instance, we would like to include
@@ -1019,7 +1019,7 @@ Samtools is very well documented, so for more usage options and
 functions, have a look at the samtools manual
 <http://www.htslib.org/doc/samtools-1.0.html>.
 
-## BAM to CRAM
+**BAM to CRAM**
 
 The samtools view command can be used to convert a BAM file to CRAM
 format. In the data directory there is a BAM file called yeast.bam that
@@ -1064,7 +1064,7 @@ places for the input and output CRAM/BAM:
 samtools view -b -T data/Saccharomyces_cerevisiae.EF4.68.dna.toplevel.fa -o data/yeast.bam data/yeast.cram
 ```
 
-## FASTQ to SAM
+**FASTQ to SAM**
 
 
 SAM format is mainly used to store alignment data, however in some cases
@@ -1090,7 +1090,7 @@ options, run:
 picard FastqToSam -h
 ```
 
-## CRAM to FASTQ
+**CRAM to FASTQ**
 
 It is possible to convert CRAM to FASTQ directly using the
 `samtools fastq` command. However, for many applications we need the
@@ -1113,7 +1113,7 @@ For further information and usage options, have a look at the samtools
 manual page
 [(http://www.htslib.org/doc/samtools.html)](http://www.htslib.org/doc/samtools.html).
 
-## VCF to BCF
+**VCF to BCF**
 
 In a similar way that samtools view can be used to convert between SAM,
 BAM and CRAM, **`bcftools view`** can be used to convert between VCF and
