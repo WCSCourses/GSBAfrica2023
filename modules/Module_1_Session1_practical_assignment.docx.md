@@ -1,4 +1,4 @@
-**NGS Bioinformatics**
+# Genome Sequencing Bioinformatics Module 1 Session 1
 
 **Practical assignment Module 1_Session 1**
 
@@ -12,18 +12,18 @@
 
 **Date:** \<*write today's date here*\>
 
-**[Introduction to the command line]{.underline}**
+**[Introduction to the command line]**
 
-**[Introduction]{.underline}**
+**[Introduction]**
 
 *The aim of this assignment is to practice the command lines we covered
 during this first session of the module.*
 
-**[Tools used in this session]{.underline}**
+**[Tools used in this session]**
 
 *You'll be using only your terminal.*
 
-**[Please note]{.underline}**
+**[Please note]**
 
 -   **Hand-in information** please upload your completed assignment to
     the Vula 'Assignments' tab. Take note of the final hand-in date for
@@ -62,18 +62,15 @@ to use them and extract information.
 
 11. Display all the lines containing details of all genes contained in
     PccAS_v3.gff3?
+Please note genes are a type of feature. More details about gff3 format here: https://learn.gencore.bio.nyu.edu/ngs-file-formats/gff3-format/
 
-> Please note genes are a type of feature. More details about gff3
-> format here:
-> https://learn.gencore.bio.nyu.edu/ngs-file-formats/gff3-format/
-
-12. Create a new file excluding all the gene features and name this file
+13. Create a new file excluding all the gene features and name this file
     PccAS_v3_withoutgenes.gff3
 
-13. Rename the resulting file PccAS_v3_withoutgenes.gff3 to
+14. Rename the resulting file PccAS_v3_withoutgenes.gff3 to
     question_12_results.gff3
 
-14. How many CDS does PccAS_v3.gff3 contain?
+15. How many CDS does PccAS_v3.gff3 contain?
 
     a.  Write 2 separate commands to do this
 
@@ -81,20 +78,20 @@ to use them and extract information.
 
     c.  Write one single command
 
-15. Extract all information sequence ID: PccAS_01_v3 and copy it to a
+16. Extract all information sequence ID: PccAS_01_v3 and copy it to a
     file PccAS_01_v3.gff3
 
-16. Write a command to display the names of files ending with .gff3
+17. Write a command to display the names of files ending with .gff3
     under the directory Assignment using wildcards
 
-17. Create a subdirectory Genomics under Assignment
+18. Create a subdirectory Genomics under Assignment
 
-18. Download Plasmodium falciparum fasta file available at:
-    [[http://plasmodb.org/common/downloads/release-9.0/Pfalciparum/fasta/PlasmoDB-9.0_Pfalciparum_BarcodeIsolates.fasta]{.underline}](http://plasmodb.org/common/downloads/release-9.0/Pfalciparum/fasta/PlasmoDB-9.0_Pfalciparum_BarcodeIsolates.fasta)
+19. Download Plasmodium falciparum fasta file available at:
+    [[http://plasmodb.org/common/downloads/release-9.0/Pfalciparum/fasta/PlasmoDB-9.0_Pfalciparum_BarcodeIsolates.fasta]](http://plasmodb.org/common/downloads/release-9.0/Pfalciparum/fasta/PlasmoDB-9.0_Pfalciparum_BarcodeIsolates.fasta)
 
-19. How many lines does the file contain?
+20. How many lines does the file contain?
 
-20. Save all the commands you type to a file named Assignement1_commands
+21. Save all the commands you type to a file named Assignement1_commands
 
 **Part 1: participant's answer**
 
