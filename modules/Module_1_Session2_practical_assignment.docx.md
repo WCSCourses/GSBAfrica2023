@@ -8,11 +8,11 @@ __Contact session title: Session 2 command line__
 
 **Trainer: Sumir Panji and Amel Ghouila**
 
-**Participant:** \<*write your name here\*
+**Participant:** \<*write your name here\>*
 
 **Session 2 -- Practical 1 - Sed**
 
-**[Introduction]{.underline}**
+**[Introduction]**
 
 This practical will cover the use of the stream editor (sed) tool that
 is present on most unix operating systems to match and replace patterns.
