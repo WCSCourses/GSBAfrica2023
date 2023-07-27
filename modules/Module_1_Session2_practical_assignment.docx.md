@@ -34,8 +34,8 @@ cd sed
 ```
 mkdir sed_practical
 ```
-    -   cd sed_practical
-
+cd sed_practical
+```
 -   Copy files to use for the sed practical into the sed_practical
     working directory:
 
@@ -45,7 +45,7 @@ mkdir sed_practical
 
     -   ﻿cp ../practical/Notebooks/awk/genes.gff .
 
-**[Please note]{.underline}**
+**[Please note]**
 
 -   **Hand-in information** please upload your completed assignment to
     the Vula 'Assignments' tab. Take note of the final hand-in date for
@@ -192,15 +192,15 @@ mkdir sed_practical
 
  ﻿\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-**[Session 2 -- Practical 2 - AWK]{.underline}**
+**[Session 2 -- Practical 2 - AWK]**
 
-**[Introduction]{.underline}**
+**[Introduction]**
 
 This practical will cover the use of the AWK tool that is present on
 most unix operating systems to filter and work with bioinformatics
 files.
 
-**[Tools used in this session]{.underline}**
+**[Tools used in this session]**
 
 -   In the same directory as course_data/unix make a directory called
     awk and change into this directory. We will copy the relevant files
@@ -350,20 +350,20 @@ files.
  ﻿﻿\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 **[Session 2 -- Practical 3 -- bash and command line
-tools]{.underline}**
+tools]**
 
-**[Introduction]{.underline}**
+**[Introduction]**
 
 This practical will cover the use of the bash shell and running some of
 the bioinformatics programs installed in the VM that will be used later
 in the course.
 
-**[Tools used in this session]{.underline}**
+**[Tools used in this session]**
 
 A unix terminal, a text editor, files and programs installed on the
 virtual machine distributed to course participants.
 
-**[Please note]{.underline}**
+**[Please note]**
 
  ● **Hand-in information** please upload your completed assignment to
  the Vula assignments tab. Take note of the final hand-in date, which
