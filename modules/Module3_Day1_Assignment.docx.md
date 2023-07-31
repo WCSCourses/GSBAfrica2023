@@ -59,7 +59,7 @@ zcat SRR957824_1.fastq.gz | less
 ```
 Tip: You can use the *space bar* to scroll through the file and *Q* to quit. The suffix of _1 indicates that the file contains data for Read1.
 
-![reportout1](img/mod3report1png.png)
+![readout2](img/mod3read1out.png)
 
 Using a similar approach you can view the contents of the Read2 file.
 
@@ -67,7 +67,7 @@ Using a similar approach you can view the contents of the Read2 file.
 zcat SRR957824_2.fastq.gz
 ```
 
-![reportout2](img/mod3report2png.png)
+![readout2](img/mod3read2out.png)
 
 ### Questions:
 **Question 1: Why are there two files for the single sample dataset?**
@@ -109,6 +109,8 @@ in the Firefox browser.
 firefox SRR957824_1_fastqc.html
 ```
 
+![reportout1](img/mod3report1png.png)
+
 This command should open the html report for read1 in the Firefox
 browser
 
@@ -117,6 +119,8 @@ In a similar way open the quality control report for Read2.
 ```
 firefox SRR957824_2_fastqc.html
 ```
+
+![reportout2](img/mod3report2png.png)
 
 **Task 3: Interpretation of QC report**
 
