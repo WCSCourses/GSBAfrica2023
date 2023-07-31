@@ -57,6 +57,18 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 
 
 ## Course manual
+**Virtual Machine Download and Installation**        
+
+[Download the Virtual Machine with Globus](modules/Download_course_Virtual_Machine.md)        
+
+[Install the Virtual Machine with VirtualBox](modules/VM_Installationwith_Virtualbox.md)         
+
+[Issues and Fixes](modules/VM_Issues_and_Fixes.md)        
+
+[VM Frequently asked Questions FAQs](modules/VM_Question_and_Answer.md)        
+
+
+
 **Module 1 - Intro to Unix/Linux**   
 [Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)      
 
