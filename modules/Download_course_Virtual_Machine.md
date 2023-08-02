@@ -88,6 +88,22 @@ Note - if you encounter severe problems with globus, such as it being blocked on
 
 
 NB Caution, direct downloads can break easily, and lead to corrupted VMs, use the md5 checksum to check if your VM is as it should be.
+#### Extracting the Virtual Machine File
+
+Congratulations on downloading the virtual machine! The next step is to extract it from the zip file so that you can start using it. Follow these simple steps:
+
+ **Download 7-Zip File Archiver:**
+   To extract the virtual machine file, you'll need a reliable archiving tool. We recommend using 7-Zip, a free and widely used file archiver. You can download it from their official website: [https://www.7-zip.org/](https://www.7-zip.org/).
+
+ **Uncompress the VM File:**
+   Once you have 7-Zip installed, right-click on the downloaded zip file of the virtual machine. From the context menu, select "Extract Here" or "Extract to {filename}" option, depending on your preference.
+
+**Backup the Zip File (Optional but Recommended):**
+   Before proceeding with the extraction, it's a good practice to create a backup copy of the original zip file. This ensures that you have a safe copy in case anything goes wrong during the extraction process.
+
+With these steps, you should now have the uncompressed virtual machine file ready to use. Enjoy exploring and utilizing your new virtual environment!
+
+*(Note: If you encounter any issues during the extraction process, refer to the documentation or support provided by 7-Zip.)*
 
 #### Testing the integrity of the downloaded VM
 You can do an MD5 check to validate the downloaded VM. 
