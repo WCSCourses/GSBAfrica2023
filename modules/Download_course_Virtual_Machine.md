@@ -3,7 +3,7 @@
 The VM is a large download that many users struggle with.
 
 We are going to use Globus software to help with this. Globus is file
-transfer software designed for research. Here is a [video](https://youtu.be/qYZAIVlLJQ8) of this tutorial.
+transfer software designed for research. Here is a [video](https://youtu.be/qYZAIVlLJQ8) of this tutorial, but this was made for a previous course, and the names of the machine will be different to your current course. Please note, the Collection name was changed to "wcs_data_transfers". Use "wcs_data_transfers" to find the Collection where the VM is shared. 
 
 <!-- YT: [https://youtu.be//qYZAIVlLJQ8 ](https://youtu.be/qYZAIVlLJQ8)--->
 <iframe width="840" height="472" src="https://www.youtube.com/embed//qYZAIVlLJQ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>      
