@@ -4,7 +4,7 @@ VirtualBox is freely available software which allows a user to run a virtual mac
 
 #### Course VM name
 The GSBAfrica course VM is **GSBAfrica2023.vdi.zip*
-There is also a video of this tutorial, please take note of the name of your virtual machine.
+There is also a video of this tutorial, but this was made for a previous course, and the names of the machine will be different to your current course. Please make note of the name of your virtual machine.
 
 <iframe width="840" height="472" src="https://www.youtube.com/embed//Q7dQTov5pAk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>         
 
