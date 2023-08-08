@@ -6,7 +6,7 @@
 
 **Contact session title: Introduction to the command line**
 
-**Trainers: Amel Ghouila and Sumir Panji**
+**Trainers: Sonia Barasa and Lucier Olubayo**
 
 **Participant:** \<*write your name here\>*
 
