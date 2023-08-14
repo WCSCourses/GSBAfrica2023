@@ -3,7 +3,9 @@
 The VM is a large download that many users struggle with.
 
 We are going to use Globus software to help with this. Globus is file
-transfer software designed for research. Here is a [video](https://youtu.be/qYZAIVlLJQ8) of this tutorial, but this was made for a previous course, and the names of the machine will be different to your current course. Please note, the Collection name was changed to "wcs_data_transfers". Use "wcs_data_transfers" to find the Collection where the VM is shared. 
+transfer software designed for research. Here is a [video](https://youtu.be/qYZAIVlLJQ8) of this tutorial, but this was made for a previous course, and the names of the machine will be different to your current course. 
+
+**Please Note**, the Collection name was changed to **"wcs_data_transfers"**. Use **"wcs_data_transfers"** to find the Collection where the VM is shared on Globus.
 
 **Please Note** - The GSBAfrica course VM is **GSBAfrica2023.vdi.zip**, do not use the one listed in the video, as this was for a previous course.
 
