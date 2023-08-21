@@ -70,10 +70,9 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 
 
 **Module 1 - Intro to Unix/Linux**   
-Will be released 15 Aug
-<!--- [Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)     ---> 
+[Online Manual - Intro to Unix/Linux Session 1 ](modules/Module_1_Session1_practical_assignment.docx.md)
 
-<!--- [Online Manual - Intro to Unix/Linux Session 2 ](modules/Module_1_Session2_practical_assignment.docx.md)     --->    
+[Online Manual - Intro to Unix/Linux Session 2 ](modules/Module_1_Session2_practical_assignment.docx.md)
 
 
 **Module 2 - Introduction to Sequencing Technologies**    
