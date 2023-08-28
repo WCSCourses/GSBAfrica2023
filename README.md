@@ -76,16 +76,13 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 
 
 **Module 2 - Introduction to Sequencing Technologies**    
-Will be released 22 Aug
-
-<!--- [Online Manual - Introduction to Sequencing Technologies](modules/Module2_Session1_base.md) --->
+[Online Manual - Introduction to Sequencing Technologies](modules/Module2_Session1_base.md)
 
 **Module 3 - Sequencing data formats and QC**  
-Will be released 24 Aug
 
-<!---[Online Manual - Sequencing data formats and QC Session 1](modules/Module3_Day1_Assignment.docx.md)      --->
+[Online Manual - Sequencing data formats and QC Session 1](modules/Module3_Day1_Assignment.docx.md)
 
-<!---[Online Manual - Sequencing data formats and QC Session 2](modules/Module3_Day2_Data_formats_Assignment.md)      --->
+[Online Manual - Sequencing data formats and QC Session 2](modules/Module3_Day2_Data_formats_Assignment.md)
 
   
 **Module 4 - Alignment to Reference**  
