@@ -85,10 +85,9 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 [Online Manual - Sequencing data formats and QC Session 2](modules/Module3_Day2_Data_formats_Assignment.md)
 
   
-**Module 4 - Alignment to Reference**  
-Will be released 31 Aug
+**Module 4 - Alignment to Reference**      
 
-<!--- [Online Manual - Alignment to Reference](modules/)  --->
+[PDF Manual - Alignment to Reference](modules/read-alignment.practicalexercises.20210504.pdf)    
 
 **Module 5 - Variant Calling - Human**  
 Will be released 7 Sep
