@@ -36,12 +36,11 @@ This tutorial was originally written by [`Jacqui Keane`](https://github.com/jacq
 
 You can follow this tutorial by typing all the commands you see into a terminal window on the GSB Africa course virtual machine (VM). 
 
-To get started, navigate to the `data` subdirectory under `variant_calling`:
+To get started, navigate to the `data` subdirectory under `variant_calling` (modify the path accordingly based on your relative path):
 
 
 ```
 cd ./course_data/variant_calling/data	
-
 ```
 
 Now you can follow the instructions in the tutorial from here.
@@ -49,21 +48,18 @@ Now you can follow the instructions in the tutorial from here.
 
 ###	Let’s get started!
 
-In this tutorial, we will be using SAMtools, BCFtools and IGV. These are already installed on the VM you are using. If you are not using the VM, then endeavour to install these tools on your computer (or use a computer cluster with these tools). To check that these are installed, you can run the following commands:
+In this tutorial, we will be using SAMtools, BCFtools, and IGV. These are already installed on the VM you are using. If you are not using the VM, then endeavour to install these tools on your computer (or use a computer cluster with these tools). To check that these are installed, you can run the following commands:
 
 ```
 samtools --help
-
 ```
 
 ```
 bcftools --help
-
 ```
 
 ```
 igv
-
 ```
 
 This should return the help message for samtools and bcftools. The final command should launch the genome viewer IGV. You can close the IGV software, we will use it later in this tutorial to visualise variants.
@@ -79,14 +75,12 @@ First, check you are in the correct directory.
 
 ```
 pwd
-
 ```
 
 It should display something like:
 
 ```
 /home/cool_user/GSBAfrica2023/course_data/variant_calling/data
-
 ```
 
 #### 1.1 Accessing and assessing the input data
@@ -96,7 +90,6 @@ List the files in the current directory:
 
 ```
 ls -lh
-
 ```
 
 If you are using the current VM, the listing includes aligned data for two mouse strains A/J and NZO (A_J.bam and NZO.bam) and the chromosome 19 of the mouse reference genome (GRCm38_68.19.fa). However, for this year's tutorial, we would like you to practice on human NGS data (you're welcome to practice on the mouse data afterwards). 
@@ -105,14 +98,12 @@ Let's download the human NGS data prepared for this module:
 
 ```
 wget https://wcs_data_transfer.cog.sanger.ac.uk/new_data.zip
-
 ```
 
 Unzip the new_data folder
 
 ```
 unzip new_data.zip
-
 ```
 
 Before performing variant calling, it is important to check the quality of the data that you will be working with. We have already seen how to do this in the QC and Data Formats and Read Alignment sessions. For example, for NA19042, the commands would look like:
@@ -121,7 +112,7 @@ samtools stats -r hg38_chr22.fasta NA19042_region.bam > NA19042.stats
 
 plot-bamstats -r hg38_chr22.fasta.gc -p NA19042.graphs/ NA19042.stats 
 
-You do not need to run these QC checks on this data and for this we will assume that QC has already been performed and the data is of good quality.
+You do not need to run these QC checks on this data and for this, we will assume that QC has already been performed and the data is of good quality.
 
 
 #### 1.2 Generating pileup
@@ -131,13 +122,12 @@ The command `samtools mpileup` prints the read bases that align to each position
 
 ```
 samtools mpileup -f hg38_chr22.fasta NA19042_region.bam | less -S	
-
 ```
 
 Each line corresponds to a position on the genome.
 
 The columns are: chromosome, position, reference base, read depth, read bases (dot "." and comma
-"," indicate match on the forward and on the reverse strand; ACGTN and acgtn a mismatch on the forward and the reverse strand) and the final column is the base qualities encoded into characters. The caret symbol ^ marks the start of a read, the dollar sign $ the end of a read, deleted bases are represented by asterisk *
+"," indicate a match on the forward and on the reverse strand; ACGTN and acgtn a mismatch on the forward and the reverse strand) and the final column is the base qualities encoded into characters. The caret symbol ^ marks the start of a read, the dollar sign $ the end of a read, deleted bases are represented by asterisk *
 
 This output can be used for a simple consensus calling. One rarely needs this type of output. Instead, for a more sophisticated variant calling method, see the next section.
 
@@ -150,7 +140,7 @@ Q1: What is the read depth at position 42126611? (Rather than scrolling to the p
 
 Q2: What is the reference allele, and the alternate allele at position 42126611?
 
-Q3: At position 42126611, how many reads call the reference allele and how many reads call the alternate allele?
+Q3: At position 42126611, how many reads call the reference allele, and how many reads call the alternate allele?
 
 
 #### 1.3 Generating genotype likelihoods and calling variants
@@ -162,10 +152,9 @@ Run the following command (when done, press q to quit the viewing mode):
 
 ```
  bcftools mpileup -f hg38_chr22.fasta NA19042_region.bam | less -S	
-
 ```
 
-This generates an intermediate output which contains genotype likelihoods and other raw information necessary for variant calling. This output is usually streamed directly to the caller like this:
+This generates an intermediate output that contains genotype likelihoods and other raw information necessary for variant calling. This output is usually streamed directly to the caller like this:
 
 ```
 bcftools mpileup -f hg38_chr22.fasta NA19042_region.bam | bcftools call -m | less -S
@@ -179,7 +168,7 @@ Q1: Check the input/output options section of the bcftools call usage page and s
 
 ```
 
-The INFO and FORMAT fields of each entry tells us something about the data at the position in the genome. It consists of a set of key-value pairs with the tags being explained in the header of the VCF file (see the ##INFO and ##FORMAT lines in the header).
+The INFO and FORMAT fields of each entry tell us something about the data at the position in the genome. It consists of a set of key-value pairs with the tags being explained in the header of the VCF file (see the ##INFO and ##FORMAT lines in the header).
 
 We can tell `mpileup` to add additional `##INFO` and `##FORMAT` information to the output. For example, we can ask it to add the `FORMAT/AD` tag which informs about the number of high-quality reads that support alleles listed in REF and ALT columns. What command can we use to list of all available tags?
 
@@ -188,16 +177,15 @@ We can tell `mpileup` to add additional `##INFO` and `##FORMAT` information to t
 ```
 
 Now let’s run the variant calling again, this time adding the `-a AD` option. We will also add the
-`-Ou` option so that it streams a binary uncompressed BCF into call. This is to avoid the unnecessary CPU overhead of formatting the internal binary format to plain text VCF only to be immediately formatted back to the internal binary format again.
+`-Ou` option so that it streams a binary uncompressed BCF into the `call` subcommand. This is to avoid the unnecessary CPU overhead of formatting the internal binary format to plain text VCF only to be immediately formatted back to the internal binary format again.
 
 ```
 bcftools mpileup -a AD -f hg38_chr22.fasta NA19042_region.bam -Ou | bcftools call -mv -o out.vcf
-
 ```
 
 #### 1.3.1	Exercises
 
-Look at the content of the VCF file produced above and answers the questions that follow.
+Look at the content of the VCF file produced above and answer the questions that follow.
 
 
 Q1: What is the reference allele and the alternate allele at position 42126611?
@@ -221,7 +209,6 @@ When drafting commands, it is best to build them gradually. This prevents errors
 
 ```
 bcftools query --format 'POS=%POS\n' out.vcf | head	
-
 ```
 
 As you can see, the command expanded the formatting expression `POS=%POS\n` in the following way: for each VCF record the string `POS=` was copied verbatim, the string `%POS` was replaced by the VCF coordinate stored in the `POS` column, and then the newline character `\n` ended each line (without the newline character, positions from the entire VCF would be printed on a single line).
@@ -231,7 +218,6 @@ Now add the reference and the alternate allele to the output. They are stored in
 
 ```
 bcftools query -f'%POS %REF,%ALT\n' out.vcf | head	
-
 ```
 
 In the next step add the quality (%QUAL), genotype (%GT) and sequencing depth (%AD) to the output. Note that FORMAT tags must be enclosed within square brackets […] to iterate over all samples in the VCF (check the Extracting per-sample tags section in the manual https://sam-tools.github.io/bcftools/howtos/query.html for a more detailed explanation why the square brackets are needed).
@@ -239,7 +225,6 @@ In the next step add the quality (%QUAL), genotype (%GT) and sequencing depth (%
 
 ```
 bcftools query -f'%POS %QUAL [%GT %AD] %REF %ALT\n' out.vcf | head	
-
 ```
 
 Now we are able to quickly extract important information from the VCFs! 
@@ -248,7 +233,6 @@ Let’s filter rows with `QUAL` smaller than 30 by adding the filtering expressi
 
 ```
 bcftools query -f'%POS %QUAL [%GT %AD] %REF %ALT\n' -i'QUAL>=30' out.vcf | head	
-
 ```
 
 Now compare the result with the output from the previous command (were the low-quality lines removed?). In the next step, limit the output to SNPs and ignore indels by adding the type=“snp” condition to the filtering expression. Because both conditions must be valid at the same time, we request the AND logic using the && operator:
@@ -256,8 +240,7 @@ Now compare the result with the output from the previous command (were the low-q
 
 ```
 bcftools query -f'%POS %QUAL [%GT %AD] %REF %ALT\n' -i'QUAL>=30 && type="snp"'
-→out.vcf | head
-
+out.vcf | head
 ```
 
 
@@ -275,7 +258,6 @@ Now we can filter our callset. In order to evaluate the quality, we will use `bc
 bcftools stats out.vcf | less 
 bcftools stats out.vcf | grep TSTV
 bcftools stats out.vcf | grep TSTV | cut -f5
-
 ```
 
 Q2: Calculate ts/tv of the set filtered as above by adding -i ‘QUAL>=30 && AD[\*:1]>=15’ to the `bcftools stats` command (here the asterisk followed by a colon tells the program to apply the filtering to all samples. At least one sample must pass in order for a site to pass.) After applying the filter, you should observe an increased ts/tv value.
@@ -289,7 +271,6 @@ Another useful command is `bcftools filter` which allows to “soft filter” th
 
 ```
 bcftools filter -s LowQual -i'QUAL>=30 && AD[*:1]>=15' -g8 -G10 out.vcf -o out.flt.vcf
-
 ```
 
 
@@ -327,7 +308,6 @@ In this section we will call variants across two mouse samples. To begin, check 
 
 ```
 ls *.bam
-
 ```
 
 Now modify the variant calling command from the previous section to use both BAM files. Write the output to a BCF file called multi.bcf
@@ -366,7 +346,6 @@ Start IGV by typing:
 
 ```
 igv
-
 ```
 
 #### 4.1 Loading the reference genome 
@@ -378,7 +357,6 @@ The data we are using for this practical is aligned to GRCh38 (hg38). If you nee
 
 Load the alignment file for the sample HG03565 (HG03565.bam).
 Go to ’ File -> Load from File -> Navigate to the HG03565.bam” file ->  click’ Open ’.
-
 
 
 #### 4.3 Exercises
@@ -408,11 +386,11 @@ Now continue to the next section of the tutorial: Variant annotation
 ### 5.	Variant annotation
 
 Variant annotation is used to help researchers filter and prioritise functionally important variants for further study. There are several popular programs available for annotating variants. These include:
-•	bcftools csq
-•	Ensembl VEP (Variant Effect Predictor)
-•	SnpEff
+- bcftools csq
+- Ensembl VEP (Variant Effect Predictor)
+- SnpEff
 
-These tools can be used to to predict the functional consequence of the variants on the protien (e.g. whether a variant is missense, stop-gain, frameshift inducing etc).
+These tools can be used to to predict the functional consequence of the variants on the protein (e.g. whether a variant is missense, stop-gain, frameshift inducing etc).
 
 #### 5.1	bcftools csq
 
@@ -421,16 +399,14 @@ Here we will use the lightweight `bcftools csq` command to annotate the variants
 
 ```
 bcftools view -i 'FILTER="PASS"' multi.flt.bcf | bcftools csq -p m -f hg38_chr22.fasta -g  Homo_sapiens.GRCh38.110.chromosome.22.gff3.gz  -Ob  -o  multi.flt.annot.bcf
-
 ```
 
-The command takes VCF as input, the -f option specifies the reference file that the data was aligned too and the -g option specifies the GFF file that contains the gene models for the reference. Because our data is not phased, we provide the -p option (which does not actually phase the data, but tells the program to make an assumption about the phase). The -Ob option ensures the command produces compressed BCF as output.
+The command takes VCF as input, the -f option specifies the reference file that the data was aligned to and the -g option specifies the GFF file that contains the gene models for the reference. Because our data is not phased, we provide the -p option (which does not actually phase the data, but tells the program to make an assumption about the phase). The -Ob option ensures the command produces compressed BCF as output.
 
 Now index the BCF file:
 
 ```
- bcftools index multi.filt.annot.bcf	
-
+bcftools index multi.filt.annot.bcf	
 ```
 
 
@@ -439,7 +415,6 @@ Now index the BCF file:
 Q1: Use the bcftools query -f ‘%BCSQ’ command to extract the consequence at position chr22:42130692
 
 ```
-	
 
 ```
 
