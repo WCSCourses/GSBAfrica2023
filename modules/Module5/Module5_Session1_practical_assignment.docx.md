@@ -10,30 +10,33 @@ multi-nucleotide polymorphisms (MNPs),  small insertions and deletions (indels) 
 
 On completion of the tutorial, you can expect to be able to:
 
-• Perform variant calling (SNPs and indels) using standard tools
-• Assess the quality/confidence of a variant call
-• Filter variant calls to remove low quality/confidence calls
-• Perform variant calling across multiple samples
-• Visualise variants using standard tools
-• Annotate variants with consequence calls
+- Perform variant calling (SNPs and indels) using standard tools
+- Assess the quality/confidence of a variant call
+- Filter variant calls to remove low-quality/confidence calls
+- Perform variant calling across multiple samples
+- Visualise variants using standard tools
+- Annotate variants with consequence calls
 
 ###	Tutorial sections
 This tutorial comprises the following sections:
-1. Performing variant calling 2. Filtering variants 3. Multi-sample variant calling 4. Visualising variants
+1. Performing variant calling
+2. Filtering variants
+3. Multi-sample variant calling
+4. Visualising variants
 
 There is also an additional (optional) section: 5. Variant annotation
 
 
 ###	Authors
 
-This tutorial was written by [`Jacqui Keane`](https://github.com/jacquikeane) (based on material from Thomas Keane [`Thomas Keane`](https://github.com/tk2) and [`Petr Danecek`](https://github.com/pd3)) and updated by [`David Twesigomwe`](https://github.com/twesigomwedavid).
+This tutorial was originally written by [`Jacqui Keane`](https://github.com/jacquikeane) (based on material from Thomas Keane [`Thomas Keane`](https://github.com/tk2) and [`Petr Danecek`](https://github.com/pd3)) and has recently been updated by [`David Twesigomwe`](https://github.com/twesigomwedavid).
 
 
 ###	Running the commands from this tutorial
 
-You can follow this tutorial by typing all the commands you see into a terminal window on the course virtual machine (VM). 
+You can follow this tutorial by typing all the commands you see into a terminal window on the GSB Africa course virtual machine (VM). 
 
-To get started, navigate to the data subdirectory under variant_calling:
+To get started, navigate to the `data` subdirectory under `variant_calling`:
 
 
 ```
@@ -75,7 +78,7 @@ When performing variant calling we need the aligned sequences (in SAM, BAM or CR
 First, check you are in the correct directory.
 
 ```
-igv
+pwd
 
 ```
 
@@ -96,7 +99,7 @@ ls -lh
 
 ```
 
-If you are using the current VM, the listing shows aligned data for two mouse strains A/J and NZO (A_J.bam and NZO.bam) and the chromosome 19 of the mouse reference genome (GRCm38_68.19.fa). However, for this year's tutorial, we would like you to practice on human NGS data (you're welcome to practice on the mouse data afterwards). 
+If you are using the current VM, the listing includes aligned data for two mouse strains A/J and NZO (A_J.bam and NZO.bam) and the chromosome 19 of the mouse reference genome (GRCm38_68.19.fa). However, for this year's tutorial, we would like you to practice on human NGS data (you're welcome to practice on the mouse data afterwards). 
 
 Let's download the human NGS data prepared for this module:
 
@@ -123,7 +126,7 @@ You do not need to run these QC checks on this data and for this we will assume 
 
 #### 1.2 Generating pileup
 
-The command samtools mpileup prints the read bases that align to each position in the reference genome. Type the command:
+The command `samtools mpileup` prints the read bases that align to each position in the reference genome. Type the command:
 
 
 ```
@@ -448,8 +451,3 @@ Q3 What is the amino acid change?
 
 
 Congratulations! You have reached the end of the variant calling (SNPs and indels) tutorial.
-
-
-
-
-
