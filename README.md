@@ -90,9 +90,13 @@ The practical sessions will be taught exclusively through Unix/Linux. Therefore,
 [PDF Manual - Alignment to Reference](modules/read-alignment.practicalexercises.20210504.pdf)    
 
 **Module 5 - Variant Calling - Human**  
-Will be released 7 Sep
 
-<!--- [Online Manual - Variant Calling - Human](modules/)  --->
+[Base Instructions - Variant Calling - Human](modules/Module5/Module5_Session1_base.md) 
+
+[Online Manual - Human Variant Calling](modules/Module5/Module5_Session1_practical_assignment.md) 
+
+[PDF Manual - Human Variant Calling ](modules/Module5/Module5_Session1_practical_assignment.pdf) 
+
 
 **Module 6 - Variant Calling - Pathogen**  
 Will be released 19 Sep
