@@ -3,24 +3,24 @@
 ### Introduction
 Structural variants (SVs) are large genomic alterations of at least 50 bp or larger in size. There are several types of SVs, including deletions, duplications, insertions, inversions, and translocations which describe different combinations of DNA gains, losses, or rearrangements. Copy number variations (CNVs) are a particular subtype of SV mainly represented by deletions and duplications. SVs are typically described as single events, although more complex scenarios involving combinations of SV types exist.
 
-** Learning outcomes**
+**Learning outcomes**
 On completion of the tutorial, you can expect to be able to:
 - Call structural variants using standard tools
 - Visualise structural variants using standard tools
 - Call structural variants from long read data
 - Use bedtools to do regional comparisons over genomic co-ordinates
 
-** Tutorial sections**
+**Tutorial sections**
 This tutorial comprises the following sections: 
 1. Looking at structural variants in VCF
 2. Calling structural variants
 3. Structural variants from long reads
 4. Bedtools
 
-** Authors**
+**Authors**
 This tutorial was originally written by Jacqui Keane based on material from Thomas Keane, and updated by David Twesigomwe. 
 
-** Running the commands in this tutorial**    
+**Running the commands in this tutorial**    
 You can follow this tutorial by typing all the commands you see into a terminal window on the GSB Africa course virtual machine (VM)
 
 To get started, navigate to the `data` subdirectory under `structural_variation` (modify the path accordingly based on your relative path):
