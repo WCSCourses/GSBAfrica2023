@@ -1,9 +1,11 @@
 # Structural Variation Calling
 
 ### Introduction
+
 Structural variants (SVs) are large genomic alterations of at least 50 bp or larger in size. There are several types of SVs, including deletions, duplications, insertions, inversions, and translocations which describe different combinations of DNA gains, losses, or rearrangements. Copy number variations (CNVs) are a particular subtype of SV mainly represented by deletions and duplications. SVs are typically described as single events, although more complex scenarios involving combinations of SV types exist.
 
 **Learning outcomes**
+
 On completion of the tutorial, you can expect to be able to:
 - Call structural variants using standard tools
 - Visualise structural variants using standard tools
@@ -11,6 +13,7 @@ On completion of the tutorial, you can expect to be able to:
 - Use bedtools to do regional comparisons over genomic co-ordinates
 
 **Tutorial sections**
+
 This tutorial comprises the following sections: 
 1. Looking at structural variants in VCF
 2. Calling structural variants
@@ -18,9 +21,11 @@ This tutorial comprises the following sections:
 4. Bedtools
 
 **Authors**
+
 This tutorial was originally written by Jacqui Keane based on material from Thomas Keane, and updated by David Twesigomwe. 
 
-**Running the commands in this tutorial**    
+**Running the commands in this tutorial**  
+
 You can follow this tutorial by typing all the commands you see into a terminal window on the GSB Africa course virtual machine (VM)
 
 To get started, navigate to the `data` subdirectory under `structural_variation` (modify the path accordingly based on your relative path):
@@ -29,7 +34,8 @@ To get started, navigate to the `data` subdirectory under `structural_variation`
 cd ./course_data/structural_variation/data	
 ```
 
-** Lets get started**       
+**Lets get started**   
+
 This tutorial requires that you have breakdancer, lumpy, minimap2, sniffles, bedtools and igv installed on your computer. These are already installed on the virtual machine you are using. To check that these are installed, run the following commands:
 
 ```
@@ -52,6 +58,7 @@ If after this course you would like to download and install this software the in
 To get started with the tutorial, go to the first section: Looking at structural variants in VCF
  
 ### 1.	Looking at Structural Variants in VCF
+
 Structural variants can be stored in VCF files. In this part of the tutorial, we will look at how these are represented in a VCF file.
 
 First, check you are in the correct directory:
@@ -160,6 +167,7 @@ igv
 ```
 
 Open the reference genome. Go to **’Genomes -> Load Genome From Server… ’ and select “S. cerevisiae (SacCer3)”.**
+
 Load the BAM file. Go to **’ File -> Load from File… ‘. Select the “ERR1015121.bam” BAM file and click’ Open ’.**
 
 Load the BED file for the deletion calls that you created in the exercise 5 above. **Go to ’ File -> Load from File… ‘. Select the “breakdancer.dels.bed” BED file and click’ Open ’.**
@@ -167,23 +175,23 @@ Load the BED file for the deletion calls that you created in the exercise 5 abov
 
 **2.2.1	Exercises**
 
-Using the navigation bar, go to region II:258,500-266,700.
+Using the navigation bar, go to region 11:258,500-266,700.
 
-- 1.	Can you see the structural variant? What type of structural variant is it? (Hint: you may need to zoom out a little to see the full structural variant).
+Q1.	Can you see the structural variant? What type of structural variant is it? (Hint: you may need to zoom out a little to see the full structural variant).
 
-- 2.	Can you see any evidence to support this SV call?
+Q2.	Can you see any evidence to support this SV call?
 
-- 3.	Can you estimate the size of the SV?
+Q3.	Can you estimate the size of the SV?
 The VCF in the exercise1 directory was produced by another structural variant caller on the same sample as this exercise.
 
-- 4.	Load the exercise1/ERR1015121.vcf VCF into IGV also (File - Load from file, and select ERR1015121.vcf in the exercise 1 directory).
+Q4.	Load the exercise1/ERR1015121.vcf VCF into IGV also (File - Load from file, and select ERR1015121.vcf in the exercise 1 directory).
 
-- 5.	Was the structural variant at II:258766 also called by the other structural variant software (lumpy)? If so, what was the predicted size?
+Q5.	Was the structural variant at II:258766 also called by the other structural variant software (lumpy)? If so, what was the predicted size?
 
 Using the navigation bar, go to to region II:508,064-511,840.
-- 6.	Is there a SV deletion called in this region by either SV caller?
+Q6.	Is there a SV deletion called in this region by either SV caller?
 
-- 7.	Is there any read support for a SV deletion in this region? If so, how many read pairs could support the deletion call (Hint: change the IGV view to squished and View as pairs to see any inconsistently aligned read pairs).
+Q7.	Is there any read support for a SV deletion in this region? If so, how many read pairs could support the deletion call (Hint: change the IGV view to squished and View as pairs to see any inconsistently aligned read pairs).
  
 **2.3	Lumpy**
 
@@ -209,8 +217,9 @@ Now index the bam file. Hint: use samtools index
 
 **2.3.1	Exercises**
 
-- 1.	What does the -F option in samtools view do?
-- 2.	Which BAM flags does 1294 indicate? (Hint: in your web browser, visit https://broadinsti- tute.github.io/picard/explain-flags.html and enter 1294 to find out)
+Q1.	What does the -F option in samtools view do?
+
+Q2.	Which BAM flags does 1294 indicate? (Hint: in your web browser, visit https://broadinstitute.github.io/picard/explain-flags.html and enter 1294 to find out)
 
 The next step for Lumpy is to extract the reads that are only split mapped (i.e. split read alignments). This is all one single command:
 
@@ -230,8 +239,10 @@ lumpyexpress -B ERR1015069.bam -S ERR1015069.splitters.bam -D ERR1015069.discord
 ```
  
 **2.3.2	Exercises**
-- 3.	What type of SV event occurs at position IV:383393? What is the length of the SV event?
-- 4.	What type of SV event occurs at position IV:437149? What is the length of the SV event?
+
+Q3.	What type of SV event occurs at position IV:383393? What is the length of the SV event?
+
+Q4.	What type of SV event occurs at position IV:437149? What is the length of the SV event?
 
 
 Congratulations, you have sucessfully called structural variants from some NGS data. Now continue to the next section of the tutorial: Calling structural variants from long reads
@@ -342,10 +353,14 @@ igv
 Open the reference genome ref/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa and load the BAM file YPS128.filtered_subreads.10x.fastq.sorted.calmd.bam and the VCF file YPS128.filtered_subreads.10x.vcf. Now answer the questions that follow.
  
 **3.5	Exercises**
-- 1.	What sort of SV was called at on chromosome ‘XII’ at position 451419?
-- 2.	What is the length of the SV?
-- 3.	How many reads are supporting the SV?
-- 4.	From a visual inspection of the SV in IGV, can you determine how accurate is the breakpoint of the called SV compared to what you see in IGV?
+
+Q1.	What sort of SV was called at on chromosome ‘XII’ at position 451419?
+
+Q2.	What is the length of the SV?
+
+Q3.	How many reads are supporting the SV?
+
+Q4.	From a visual inspection of the SV in IGV, can you determine how accurate is the breakpoint of the called SV compared to what you see in IGV?
 
 Now continue to the next section of the tutorial: bedtools
  
@@ -423,17 +438,17 @@ bedtools closest -h
 
 *4.3	Exercises*
 
-- 1.	How many SVs found in ERR1015069.dels.vcf overlap with a gene? (Hint: Use bedtools intersect command)
+Q1.	How many SVs found in ERR1015069.dels.vcf overlap with a gene? (Hint: Use bedtools intersect command)
 
-- 2.	How many SVs found in ERR1015069.dels.vcf do not overlap with a gene? (Hint: note the -v parameter to bedtools intersect)
+Q2.	How many SVs found in ERR1015069.dels.vcf do not overlap with a gene? (Hint: note the -v parameter to bedtools intersect)
 
-- 3.	How many SVs found in ERR1015069.dels.vcf overlap with a more strict definition of 50%?
+Q3.	How many SVs found in ERR1015069.dels.vcf overlap with a more strict definition of 50%?
 
-- 4.	What is the closest gene to the structural variant at IV:384220 in ERR1015069.dels.vcf?
+Q4.	What is the closest gene to the structural variant at IV:384220 in ERR1015069.dels.vcf?
 
-- 5.	How	many SVs overlap between the two files:	ERR1015069.dels.vcf	and ERR1015121.dels.vcf?
+Q5.	How	many SVs overlap between the two files:	ERR1015069.dels.vcf	and ERR1015121.dels.vcf?
 
-- 6.	How many SVs have a 50% reciprocal overlap between the two files ERR1015069.dels.vcf and ERR1015121.dels.vcf (Hint: first find the option for reciprocal overlap by typing: bedtools intersect -h)
+Q6.	How many SVs have a 50% reciprocal overlap between the two files ERR1015069.dels.vcf and ERR1015121.dels.vcf (Hint: first find the option for reciprocal overlap by typing: bedtools intersect -h)
 
 
 **Congratulations, you have reached the end of the tutorial.**
