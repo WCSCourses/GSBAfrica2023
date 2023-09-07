@@ -1,3 +1,10 @@
+<style>
+  code {
+    white-space : pre-wrap !important;
+    word-break: break-word;
+  }
+</style>
+
 ## Human Variant Calling Tutorial: SNPs and indels
 
 ### Introduction
@@ -46,7 +53,7 @@ cd ./course_data/variant_calling/data
 Now you can follow the instructions in the tutorial from here.
 
 
-### Let’s get started!
+## Let’s get started!
 
 In this tutorial, we will be using SAMtools, BCFtools, and IGV. These are already installed on the VM you are using. If you are not using the VM, then endeavour to install these tools on your computer (or use a computer cluster with these tools). To check that these are installed, you can run the following commands:
 
@@ -67,7 +74,7 @@ This should return the help message for samtools and bcftools. The final command
 To get started with the tutorial, go to to the first section: Performing variant calling
 
 
-### 1.  Performing Variant Calling
+## 1.  Performing Variant Calling
 
 When performing variant calling we need the aligned sequences (in SAM, BAM or CRAM format), and the reference genome that we want to call variants against.
 
@@ -80,10 +87,10 @@ pwd
 It should display something like:
 
 ```
-/home/cool_user/GSBAfrica2023/course_data/variant_calling/data
+/home/cool_user/course_data/variant_calling/data
 ```
 
-#### 1.1 Accessing and assessing the input data
+### 1.1 Accessing and assessing the input data
 
 List the files in the current directory:
 
@@ -115,7 +122,7 @@ plot-bamstats -r hg38_chr22.fasta.gc -p NA19042.graphs/ NA19042.stats
 You do not need to run these QC checks on this data and for this, we will assume that QC has already been performed and the data is of good quality.
 
 
-#### 1.2 Generating pileup
+### 1.2 Generating pileup
 
 The command `samtools mpileup` prints the read bases that align to each position in the reference genome. Type the command:
 
@@ -144,7 +151,7 @@ Q2: What is the reference allele, and the alternate allele at position 42126611?
 Q3: At position 42126611, how many reads call the reference allele, and how many reads call the alternate allele?
 
 
-#### 1.3 Generating genotype likelihoods and calling variants
+### 1.3 Generating genotype likelihoods and calling variants
 
 The `bcftools mpileup` command can be used to generate genotype likelihoods. (Beware: the command `mpileup` is present in both `samtools` and `bcftools`, but in both they do different things. While `samtools mpileup` produces the text pileup output seen in the previous exercise, `bcftools mpileup` generates a VCF file with genotype likelihoods.)
 
@@ -202,7 +209,7 @@ Congratulations, you have successfully called variants from some NGS data. Now c
 
 
 
-### 2. Variant Filtering
+## 2. Variant Filtering
 
 In the next series of commands, we will learn how to extract information from VCFs and how to filter the raw calls. We will use the bcftools commands again. Most of the commands accept the -i (-- include) and -e (--exclude) options https://samtools.github.io/bcftools/bcftools.html#expressions which will be useful when filtering using fixed thresholds. We will estimate the quality of the callset by calculating the ratio of transitions and transversions https://en.wikipedia.org/wiki/Transversion.
 
@@ -245,8 +252,7 @@ bcftools query -f'%POS %QUAL [%GT %AD] %REF %ALT\n' -i'QUAL>=30 && type="snp"'
 out.vcf | head
 ```
 
-
-
+<br />
 
 #### 2.1 Exercises
 
@@ -277,7 +283,7 @@ bcftools filter -s LowQual -i'QUAL>=30 && AD[*:1]>=15' -g8 -G10 out.vcf -o out.f
 ```
 
 
-#### 2.2 Variant Normalisation
+### 2.2 Variant Normalisation
 
 The same indel variant can be represented in different ways. For example, consider the following 2bp (TC) deletion. Although the resulting sequence does not change, the deletion can be placed at two different positions within the short repeat:
 
@@ -301,7 +307,7 @@ Now continue to the next section of the tutorial: Multi-sample variant calling
 
 
 
-### 3. Calling Variants Across Multiple Samples
+## 3. Calling Variants Across Multiple Samples
 
 
 In many types of experiments we sequence multiple samples and compare their genetic variation across samples. The single-sample variant calling we have done so far has the disadvantage of not providing information about reference genotypes. Because only variant sites are stored, we are not able to distinguish between records missing due to reference genotypes versus records missing due to lack of coverage.
@@ -342,7 +348,7 @@ Q2: What is the ts/tv of the removed sites?
 Now continue to the next section of the tutorial: Visualising variants
 
 
-### 4. Variant visualisation
+## 4. Variant visualisation
 
 It is often useful to visually inspect a SNP or indel of interest in order to assess the quality of the variant and interpret the genomic context of the variant. We can use the IGV tool to view some of the variant positions from the VCF file.
 
@@ -387,7 +393,7 @@ Now continue to the next section of the tutorial: Variant annotation
 
 
 
-### 5.  Variant annotation
+## 5.  Variant annotation
 
 Variant annotation is used to help researchers filter and prioritise functionally important variants for further study. There are several popular programs available for annotating variants. These include:
 - bcftools csq
@@ -396,14 +402,13 @@ Variant annotation is used to help researchers filter and prioritise functionall
 
 These tools can be used to to predict the functional consequence of the variants on the protein (e.g. whether a variant is missense, stop-gain, frameshift inducing etc).
 
-#### 5.1    bcftools csq
+### 5.1    bcftools csq
 
 Here we will use the lightweight `bcftools csq` command to annotate the variants. Type the command:
 
 
 ```
-bcftools view -i 'FILTER="PASS"' multi.flt.bcf | bcftools csq -p m -f hg38_chr22.fasta \ 
--g  Homo_sapiens.GRCh38.110.chromosome.22.gff3.gz  -Ob  -o  multi.flt.annot.bcf
+bcftools view -i 'FILTER="PASS"' multi.flt.bcf | bcftools csq -p m -f hg38_chr22.fasta -g  Homo_sapiens.GRCh38.110.chromosome.22.gff3.gz  -Ob  -o  multi.flt.annot.bcf
 ```
 
 The command takes VCF as input, the -f option specifies the reference file that the data was aligned to and the -g option specifies the GFF file that contains the gene models for the reference. Because our data is not phased, we provide the -p option (which does not actually phase the data, but tells the program to make an assumption about the phase). The -Ob option ensures the command produces compressed BCF as output.
@@ -414,7 +419,7 @@ Now index the BCF file:
 bcftools index multi.filt.annot.bcf 
 ```
 
-
+<br />
 
 #### 5.1.1  Exercises
 
@@ -429,6 +434,6 @@ Q2: What is the functional annotation at this site?
 
 Q3 What is the amino acid change?
 
+<br />
 
-
-Congratulations! You have reached the end of the variant calling (SNPs and indels) tutorial.
+**Congratulations! You have reached the end of the variant calling (SNPs and indels) tutorial.**
